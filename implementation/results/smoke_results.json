@@ -1,0 +1,25 @@
+{
+  "status": "smoke_pass",
+  "origins": 24,
+  "horizon": 3,
+  "baseline_mae": 2.488402059986448,
+  "trace_fin_mae": 2.2405747650485597,
+  "interval_coverage_h1": 0.9166666666666666,
+  "ledger_replayable": true,
+  "first_ledger": {
+    "cutoff": "synthetic-153",
+    "regime": "high_volatility",
+    "shift_probability": 0.406021,
+    "evidence_ids": [],
+    "point_forecast": [
+      117.95288835849334,
+      117.9574487243053,
+      117.96200909011726
+    ],
+    "interval": [
+      117.95288835849334,
+      117.95288835849334
+    ],
+    "input_hash": "6a4ee3b3b1422b578901ab338df85775986ca6e5310afe441b8a0f35fd1a4003"
+  }
+}
