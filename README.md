@@ -21,6 +21,15 @@ Download daily prices and run the first rolling-origin evaluation:
 
 The measured results are documented in research/output/real_data_report.md. The first run is intentionally numeric-only; timestamp-safe GDELT/FRED/SEC retrieval is the next research milestone.
 
+## TSFM.ai API benchmark
+
+The project also supports hosted Chronos inference through TSFM.ai. Keep the credential in TSFM_API_KEY and run:
+
+    python implementation/experiments/run_tsfm_api.py data/raw/prices_daily.csv amazon/chronos-bolt-tiny
+    python implementation/experiments/run_tsfm_api_eval.py --prices data/raw/prices_daily.csv --model amazon/chronos-bolt-tiny --origins 8 --horizon 3
+
+See research/output/tsfm_api_report.md. No API key is stored in this repository.
+
 ## Layout
 
 - research/papers/ — paper notes

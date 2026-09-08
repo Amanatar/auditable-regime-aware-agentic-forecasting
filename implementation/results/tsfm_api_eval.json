@@ -1,0 +1,102 @@
+{
+  "model": "amazon/chronos-bolt-tiny",
+  "origins_per_symbol": 8,
+  "symbols": {
+    "AAPL": {
+      "origins": 8,
+      "horizon": 3,
+      "tsfm_mae": 3.549332936604818,
+      "random_walk_mae": 3.0387496948242188,
+      "dm_tsfm_vs_random_walk": {
+        "stat": -11525164.88761725,
+        "p_value": 0.0,
+        "n": 8
+      },
+      "tsfm_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.006700012611123227,
+        "annualized_sharpe": 10.357907429104845,
+        "cumulative_net_return": 0.05443634582213086,
+        "max_drawdown": 0.008914626195478448,
+        "mean_turnover": 0.2857142857142857
+      }
+    },
+    "AMZN": {
+      "origins": 8,
+      "horizon": 3,
+      "tsfm_mae": 6.901280721028646,
+      "random_walk_mae": 4.051244735717773,
+      "dm_tsfm_vs_random_walk": {
+        "stat": 44597694.97974009,
+        "p_value": 0.0,
+        "n": 8
+      },
+      "tsfm_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.002710463428437171,
+        "annualized_sharpe": -2.211047151583167,
+        "cumulative_net_return": -0.02297862818258045,
+        "max_drawdown": 0.03968618794425893,
+        "mean_turnover": 0.2857142857142857
+      }
+    },
+    "GOOG": {
+      "origins": 8,
+      "horizon": 3,
+      "tsfm_mae": 4.066703796386719,
+      "random_walk_mae": 3.6612510681152344,
+      "dm_tsfm_vs_random_walk": {
+        "stat": 1.2746964098947868,
+        "p_value": 0.20241671805174155,
+        "n": 8
+      },
+      "tsfm_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.006112913882035137,
+        "annualized_sharpe": -8.738883717748815,
+        "cumulative_net_return": -0.048344491701321046,
+        "max_drawdown": 0.048417875106752994,
+        "mean_turnover": 0.2857142857142857
+      }
+    },
+    "JPM": {
+      "origins": 8,
+      "horizon": 3,
+      "tsfm_mae": 2.4409027099609375,
+      "random_walk_mae": 1.7099990844726562,
+      "dm_tsfm_vs_random_walk": {
+        "stat": 2387169.0969616813,
+        "p_value": 0.0,
+        "n": 8
+      },
+      "tsfm_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.0013299093999368798,
+        "annualized_sharpe": 3.577905706188718,
+        "cumulative_net_return": 0.010548887136643481,
+        "max_drawdown": 0.006924783996739126,
+        "mean_turnover": 0.5714285714285714
+      }
+    },
+    "META": {
+      "origins": 8,
+      "horizon": 3,
+      "tsfm_mae": 20.009292602539062,
+      "random_walk_mae": 6.7687530517578125,
+      "dm_tsfm_vs_random_walk": {
+        "stat": 6.759753919941656,
+        "p_value": 1.3822630897568673e-11,
+        "n": 8
+      },
+      "tsfm_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.007478836879828893,
+        "annualized_sharpe": -11.587506723674554,
+        "cumulative_net_return": -0.05868700112287906,
+        "max_drawdown": 0.05868700112287906,
+        "mean_turnover": 0.0
+      }
+    }
+  },
+  "secret_persisted": false
+}

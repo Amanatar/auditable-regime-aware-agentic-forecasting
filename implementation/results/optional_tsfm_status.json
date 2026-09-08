@@ -3,5 +3,8 @@
   "torch": true,
   "transformers": true,
   "run_status": "checkpoint_download_timeout",
-  "reason": "Torch imports successfully, but loading amazon/chronos-t5-tiny from Hugging Face did not complete within the available run window and no local checkpoint was cached; no TSFM result is claimed."
+  "reason": "Torch imports successfully, but loading amazon/chronos-t5-tiny from Hugging Face did not complete within the available run window and no local checkpoint was cached; no TSFM result is claimed.",
+  "api_adapter": "TSFM.ai",
+  "api_model_smoke": "amazon/chronos-bolt-tiny",
+  "api_run_status": "completed"
 }
