@@ -23,4 +23,4 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 
 ## Immediate next milestone
 
-Replace the synthetic loader with a small timestamped price CSV and run the same smoke protocol on three tickers for 30 rolling origins. Do not add an LLM dependency until the cutoff validator and ledger replay test pass.
+The price bootstrap and 60-origin evaluation now run on five tickers. The next milestone is to add timestamp-safe GDELT event retrieval and a replay checker; do not add an LLM dependency until those cutoff and ledger tests pass.

@@ -1,0 +1,40 @@
+{
+  "source": "data\\raw\\prices_daily.csv",
+  "symbols": {
+    "AAPL": {
+      "origins": 60,
+      "horizon": 3,
+      "baseline_mae": 6.609276326497396,
+      "trace_fin_numeric_mae": 7.440808204695495,
+      "interval_coverage_h1": 0.8833333333333333
+    },
+    "AMZN": {
+      "origins": 60,
+      "horizon": 3,
+      "baseline_mae": 5.921333567301432,
+      "trace_fin_numeric_mae": 6.603767089034281,
+      "interval_coverage_h1": 0.8833333333333333
+    },
+    "GOOG": {
+      "origins": 60,
+      "horizon": 3,
+      "baseline_mae": 8.28899892171224,
+      "trace_fin_numeric_mae": 8.411710639462836,
+      "interval_coverage_h1": 0.8833333333333333
+    },
+    "JPM": {
+      "origins": 60,
+      "horizon": 3,
+      "baseline_mae": 4.458445909288195,
+      "trace_fin_numeric_mae": 4.185866979033327,
+      "interval_coverage_h1": 0.85
+    },
+    "META": {
+      "origins": 60,
+      "horizon": 3,
+      "baseline_mae": 17.250053236219618,
+      "trace_fin_numeric_mae": 21.560940887757113,
+      "interval_coverage_h1": 0.8666666666666667
+    }
+  }
+}

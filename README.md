@@ -12,6 +12,15 @@ From the repository root, run:
 
 The smoke run writes implementation/results/smoke_results.json and exercises both the random-walk baseline and the TRACE-Fin method end-to-end on deterministic synthetic data.
 
+## Real-data bootstrap
+
+Download daily prices and run the first rolling-origin evaluation:
+
+    python implementation/data/download_prices.py --output-dir data/raw --start 2020-01-01 --end 2026-09-08
+    python implementation/experiments/run_real_experiment.py data/raw/prices_daily.csv
+
+The measured results are documented in research/output/real_data_report.md. The first run is intentionally numeric-only; timestamp-safe GDELT/FRED/SEC retrieval is the next research milestone.
+
 ## Layout
 
 - research/papers/ — paper notes
