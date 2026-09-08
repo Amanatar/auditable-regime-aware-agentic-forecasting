@@ -12,8 +12,8 @@ if __name__ == "__main__":
         "chronos": bool(importlib.util.find_spec("chronos")),
         "torch": bool(importlib.util.find_spec("torch")),
         "transformers": bool(importlib.util.find_spec("transformers")),
-        "run_status": "not_run",
-        "reason": "Chronos is not installed; numeric baselines and audit-safe method were run instead.",
+        "run_status": "not_run_runtime_limit",
+        "reason": "Chronos package metadata is available, but importing the system PyTorch runtime did not complete reliably in this Windows environment; no checkpoint result is claimed.",
     }
     output = Path(__file__).resolve().parents[1] / "results" / "optional_tsfm_status.json"
     output.write_text(json.dumps(status, indent=2), encoding="utf-8")
