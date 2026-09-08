@@ -30,3 +30,15 @@ Run:
     python implementation/experiments/run_real_experiment.py data/raw/prices_daily.csv
 
 The result JSON is implementation/results/real_price_results.json. Yahoo Finance is used as a bootstrap source; a publication release should archive raw responses and replace it with a licensed or explicitly archived vendor feed.
+
+## Economic and statistical diagnostics
+
+The rolling evaluation now reports 10 bps transaction-cost-adjusted trading metrics and a dependency-free Diebold–Mariano approximation. The DM loss difference is method squared error minus random-walk squared error, so a positive statistic means the method lost to the random walk.
+
+- AAPL: numeric TRACE-Fin annualized Sharpe -1.02; evidence variant -2.73; numeric DM p=0.034.
+- AMZN: numeric Sharpe -2.85; evidence variant 0.67; neither DM comparison is below 0.05.
+- GOOG: numeric Sharpe 0.31; evidence variant -0.52; neither DM comparison is significant.
+- JPM: numeric Sharpe 1.52; evidence variant 0.61; numeric DM p=0.922.
+- META: numeric Sharpe -1.57; evidence variant -1.66; numeric DM p=0.018.
+
+These figures are exploratory: only 60 origins per ticker, no multiple-testing correction, and a simple long/short sign rule. They do not establish deployable alpha.

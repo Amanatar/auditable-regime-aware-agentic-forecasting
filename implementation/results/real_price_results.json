@@ -11,7 +11,33 @@
       "trace_fin_evidence_mae": 7.508523857571965,
       "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
-      "mean_sec_evidence_count": 146.75
+      "mean_sec_evidence_count": 146.75,
+      "dm_numeric_vs_random_walk": {
+        "stat": 2.125069256025871,
+        "p_value": 0.03358083446284747,
+        "n": 60
+      },
+      "dm_evidence_vs_random_walk": {
+        "stat": 1.9754977233752755,
+        "p_value": 0.04821169271389366,
+        "n": 60
+      },
+      "numeric_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.0013009808786242582,
+        "annualized_sharpe": -1.0227014664722482,
+        "cumulative_net_return": -0.08646686654951785,
+        "max_drawdown": 0.17224641506904914,
+        "mean_turnover": 0.23728813559322035
+      },
+      "evidence_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.0034329260006843924,
+        "annualized_sharpe": -2.726477425175904,
+        "cumulative_net_return": -0.19624378956293498,
+        "max_drawdown": 0.2470059344203549,
+        "mean_turnover": 0.23728813559322035
+      }
     },
     "AMZN": {
       "origins": 60,
@@ -21,7 +47,33 @@
       "trace_fin_evidence_mae": 7.911237420456589,
       "interval_coverage_h1": 0.8666666666666667,
       "origins_with_sec_evidence": 60,
-      "mean_sec_evidence_count": 83.26666666666667
+      "mean_sec_evidence_count": 83.26666666666667,
+      "dm_numeric_vs_random_walk": {
+        "stat": 1.6176328476188147,
+        "p_value": 0.10574174575396388,
+        "n": 60
+      },
+      "dm_evidence_vs_random_walk": {
+        "stat": 1.857330223126555,
+        "p_value": 0.06326418704180906,
+        "n": 60
+      },
+      "numeric_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.005005540654736743,
+        "annualized_sharpe": -2.850206758378306,
+        "cumulative_net_return": -0.27808396196585383,
+        "max_drawdown": 0.3566854652892585,
+        "mean_turnover": 0.1694915254237288
+      },
+      "evidence_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.0011868902351502694,
+        "annualized_sharpe": 0.6708955458377818,
+        "cumulative_net_return": 0.049796967667324665,
+        "max_drawdown": 0.16056034290745036,
+        "mean_turnover": 0.2033898305084746
+      }
     },
     "GOOG": {
       "origins": 60,
@@ -31,7 +83,33 @@
       "trace_fin_evidence_mae": 9.395742376349855,
       "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
-      "mean_sec_evidence_count": 52.15
+      "mean_sec_evidence_count": 52.15,
+      "dm_numeric_vs_random_walk": {
+        "stat": 1.0734071408396026,
+        "p_value": 0.2830884820001945,
+        "n": 60
+      },
+      "dm_evidence_vs_random_walk": {
+        "stat": 1.4557772864914507,
+        "p_value": 0.14545419664605383,
+        "n": 60
+      },
+      "numeric_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.0004448806393953473,
+        "annualized_sharpe": 0.3092563737487039,
+        "cumulative_net_return": 0.0109700940753088,
+        "max_drawdown": 0.1761060785903844,
+        "mean_turnover": 0.3389830508474576
+      },
+      "evidence_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.0007458475450481282,
+        "annualized_sharpe": -0.5196922443034683,
+        "cumulative_net_return": -0.058707973853620254,
+        "max_drawdown": 0.16027391965221138,
+        "mean_turnover": 0.3728813559322034
+      }
     },
     "JPM": {
       "origins": 60,
@@ -41,7 +119,33 @@
       "trace_fin_evidence_mae": 5.443102710551494,
       "interval_coverage_h1": 0.85,
       "origins_with_sec_evidence": 60,
-      "mean_sec_evidence_count": 26.783333333333335
+      "mean_sec_evidence_count": 26.783333333333335,
+      "dm_numeric_vs_random_walk": {
+        "stat": -0.09803918928770354,
+        "p_value": 0.9219011746924459,
+        "n": 60
+      },
+      "dm_evidence_vs_random_walk": {
+        "stat": 1.7377529700594037,
+        "p_value": 0.0822543507627482,
+        "n": 60
+      },
+      "numeric_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.0012222761074759192,
+        "annualized_sharpe": 1.5244497165405593,
+        "cumulative_net_return": 0.07082943211355697,
+        "max_drawdown": 0.06363956395517456,
+        "mean_turnover": 0.4745762711864407
+      },
+      "evidence_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": 0.000492908997599782,
+        "annualized_sharpe": 0.6111580993401022,
+        "cumulative_net_return": 0.024929480305432072,
+        "max_drawdown": 0.06363956395517456,
+        "mean_turnover": 0.3050847457627119
+      }
     },
     "META": {
       "origins": 60,
@@ -51,7 +155,33 @@
       "trace_fin_evidence_mae": 21.15380091838355,
       "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
-      "mean_sec_evidence_count": 29.8
+      "mean_sec_evidence_count": 29.8,
+      "dm_numeric_vs_random_walk": {
+        "stat": 2.3564243129723232,
+        "p_value": 0.018451827419371635,
+        "n": 60
+      },
+      "dm_evidence_vs_random_walk": {
+        "stat": 2.1226332160635466,
+        "p_value": 0.033784599288333356,
+        "n": 60
+      },
+      "numeric_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.002820357186260558,
+        "annualized_sharpe": -1.5718100163923558,
+        "cumulative_net_return": -0.1764966293472744,
+        "max_drawdown": 0.3446107558116921,
+        "mean_turnover": 0.3050847457627119
+      },
+      "evidence_trading": {
+        "cost_bps": 10.0,
+        "mean_daily_net_return": -0.002984565365170303,
+        "annualized_sharpe": -1.6645170358937298,
+        "cumulative_net_return": -0.18456536389556022,
+        "max_drawdown": 0.344610755811692,
+        "mean_turnover": 0.3728813559322034
+      }
     }
   }
 }

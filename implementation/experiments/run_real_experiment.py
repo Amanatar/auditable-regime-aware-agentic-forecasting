@@ -11,9 +11,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "baseline"))
 sys.path.insert(0, str(ROOT / "method"))
+sys.path.insert(0, str(ROOT / "evaluation"))
 
 from baseline import random_walk_forecast
 from evidence import evidence_before, load_jsonl
+from metrics import diebold_mariano_squared, trading_metrics
 from trace_fin import forecast_with_audit
 
 
@@ -35,11 +37,15 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
         raise ValueError("not enough rows for requested rolling origins")
     start = len(prices) - origins - horizon
     baseline_errors, method_errors, evidence_errors, coverage, evidence_counts = [], [], [], [], []
+    h1_actual, h1_baseline, h1_numeric, h1_evidence, h1_last = [], [], [], [], []
     residuals = []
     for offset in range(origins):
         cut = start + offset
         history, actual = prices[:cut], prices[cut:cut + horizon]
         baseline_errors.append(mae(actual, random_walk_forecast(history, horizon)))
+        h1_actual.append(actual[0])
+        h1_baseline.append(history[-1])
+        h1_last.append(history[-1])
         cutoff = f"{dates[cut - 1]}T23:59:59+00:00"
         available = evidence_before(evidence_rows, symbol, cutoff)
         available_features = evidence_before(feature_rows, symbol, cutoff)
@@ -55,6 +61,8 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
         )
         method_errors.append(mae(actual, numeric_result["point_forecast"]))
         evidence_errors.append(mae(actual, evidence_result["point_forecast"]))
+        h1_numeric.append(numeric_result["point_forecast"][0])
+        h1_evidence.append(evidence_result["point_forecast"][0])
         coverage.append(float(evidence_result["interval"][0] <= actual[0] <= evidence_result["interval"][1]))
         residuals.append(actual[0] - numeric_result["point_forecast"][0])
     return {
@@ -66,6 +74,10 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
         "interval_coverage_h1": sum(coverage) / len(coverage),
         "origins_with_sec_evidence": sum(count > 0 for count in evidence_counts),
         "mean_sec_evidence_count": sum(evidence_counts) / len(evidence_counts),
+        "dm_numeric_vs_random_walk": diebold_mariano_squared(h1_actual, h1_numeric, h1_baseline),
+        "dm_evidence_vs_random_walk": diebold_mariano_squared(h1_actual, h1_evidence, h1_baseline),
+        "numeric_trading": trading_metrics(h1_last, h1_numeric, h1_actual),
+        "evidence_trading": trading_metrics(h1_last, h1_evidence, h1_actual),
     }
 
 

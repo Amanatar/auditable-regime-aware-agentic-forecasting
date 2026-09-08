@@ -1,0 +1,7 @@
+{
+  "chronos": false,
+  "torch": true,
+  "transformers": true,
+  "run_status": "not_run",
+  "reason": "Chronos is not installed; numeric baselines and audit-safe method were run instead."
+}

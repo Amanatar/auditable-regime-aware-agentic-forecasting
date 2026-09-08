@@ -7,7 +7,7 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 ## Milestones
 
 1. **Data preparation (1–2 days):** download daily prices, FRED/ALFRED release-aware series, GDELT/SEC records; normalize publication timestamps; create checksummed manifests; implement a cutoff validator.
-2. **Baseline reproduction (1 day):** run random walk, DLinear, and iTransformer/Chronos baselines on identical rolling-origin folds; save predictions, metrics, and environment metadata.
+2. **Baseline reproduction (1 day):** run random walk, DLinear, and iTransformer/Chronos baselines on identical rolling-origin folds; save predictions, metrics, and environment metadata. The current environment lacks the Chronos package, so the optional TSFM status is recorded as not run.
 3. **TRACE-Fin method (2–3 days):** implement online regime features, timestamp-safe retrieval, constrained evidence schema, gated ensemble, and conformal calibration.
 4. **Ablations (1–2 days):** remove regime detector, evidence, cutoff restriction, conformal layer, and replace evidence with shuffled/placebo snippets.
 5. **Results and stress tests (2 days):** evaluate calm versus shift windows, compute calibration and cost-adjusted utility, run Diebold–Mariano and block-bootstrap tests, and inspect ledger replay failures.
@@ -23,4 +23,4 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 
 ## Immediate next milestone
 
-The price bootstrap and 60-origin evaluation now run on five tickers. The next milestone is to add timestamp-safe GDELT event retrieval and a replay checker; do not add an LLM dependency until those cutoff and ledger tests pass.
+The price bootstrap, SEC evidence audit, cost-aware metrics, and 60-origin evaluation now run on five tickers. The next milestone is a learned/calibrated text feature and a licensed or archived news corpus; do not claim TSFM gains until the optional checkpoint is installed and evaluated under the same folds.
