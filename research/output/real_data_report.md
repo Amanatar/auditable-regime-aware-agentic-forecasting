@@ -43,4 +43,4 @@ The rolling evaluation now reports 10 bps transaction-cost-adjusted trading metr
 
 These figures are exploratory: only 60 origins per ticker, no multiple-testing correction, and a simple long/short sign rule. They do not establish deployable alpha.
 
-The optional Chronos checkpoint was not included in the headline table. Its package metadata is available, but importing the PyTorch runtime did not complete reliably in this environment, so reporting a TSFM number would be fabricated.
+The optional Chronos checkpoint was not included in the headline table. Torch now imports successfully, but downloading amazon/chronos-t5-tiny from Hugging Face did not complete and no local checkpoint was cached. Reporting a TSFM number would therefore be fabricated.

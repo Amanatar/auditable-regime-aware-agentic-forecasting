@@ -2,6 +2,6 @@
   "chronos": true,
   "torch": true,
   "transformers": true,
-  "run_status": "not_run_runtime_limit",
-  "reason": "Chronos package metadata is available, but importing the system PyTorch runtime did not complete reliably in this Windows environment; no checkpoint result is claimed."
+  "run_status": "checkpoint_download_timeout",
+  "reason": "Torch imports successfully, but loading amazon/chronos-t5-tiny from Hugging Face did not complete within the available run window and no local checkpoint was cached; no TSFM result is claimed."
 }

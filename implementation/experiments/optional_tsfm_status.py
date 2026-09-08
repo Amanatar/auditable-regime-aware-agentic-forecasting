@@ -12,8 +12,8 @@ if __name__ == "__main__":
         "chronos": bool(importlib.util.find_spec("chronos")),
         "torch": bool(importlib.util.find_spec("torch")),
         "transformers": bool(importlib.util.find_spec("transformers")),
-        "run_status": "not_run_runtime_limit",
-        "reason": "Chronos package metadata is available, but importing the system PyTorch runtime did not complete reliably in this Windows environment; no checkpoint result is claimed.",
+        "run_status": "checkpoint_download_timeout",
+        "reason": "Torch imports successfully, but loading amazon/chronos-t5-tiny from Hugging Face did not complete within the available run window and no local checkpoint was cached; no TSFM result is claimed.",
     }
     output = Path(__file__).resolve().parents[1] / "results" / "optional_tsfm_status.json"
     output.write_text(json.dumps(status, indent=2), encoding="utf-8")
