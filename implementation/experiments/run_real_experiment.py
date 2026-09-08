@@ -30,11 +30,11 @@ def load_prices(path: Path) -> dict[str, list[float]]:
     return dict(grouped)
 
 
-def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[dict], symbol: str, origins: int = 60, horizon: int = 3) -> dict:
+def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[dict], feature_rows: list[dict], symbol: str, origins: int = 60, horizon: int = 3) -> dict:
     if len(prices) < origins + horizon + 30:
         raise ValueError("not enough rows for requested rolling origins")
     start = len(prices) - origins - horizon
-    baseline_errors, method_errors, coverage, evidence_counts = [], [], [], []
+    baseline_errors, method_errors, evidence_errors, coverage, evidence_counts = [], [], [], [], []
     residuals = []
     for offset in range(origins):
         cut = start + offset
@@ -42,19 +42,27 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
         baseline_errors.append(mae(actual, random_walk_forecast(history, horizon)))
         cutoff = f"{dates[cut - 1]}T23:59:59+00:00"
         available = evidence_before(evidence_rows, symbol, cutoff)
+        available_features = evidence_before(feature_rows, symbol, cutoff)
         evidence_counts.append(len(available))
-        result = forecast_with_audit(
+        numeric_result = forecast_with_audit(
             history, horizon, residuals=residuals[-20:], cutoff=cutoff,
             evidence_ids=[row["accession_number"] for row in available[-20:]],
         )
-        method_errors.append(mae(actual, result["point_forecast"]))
-        coverage.append(float(result["interval"][0] <= actual[0] <= result["interval"][1]))
-        residuals.append(actual[0] - result["point_forecast"][0])
+        signal = sum(row["signal"] for row in available_features[-3:]) / max(1, len(available_features[-3:]))
+        evidence_result = forecast_with_audit(
+            history, horizon, evidence_signal=signal, residuals=residuals[-20:], cutoff=cutoff,
+            evidence_ids=[row["accession_number"] for row in available[-20:]],
+        )
+        method_errors.append(mae(actual, numeric_result["point_forecast"]))
+        evidence_errors.append(mae(actual, evidence_result["point_forecast"]))
+        coverage.append(float(evidence_result["interval"][0] <= actual[0] <= evidence_result["interval"][1]))
+        residuals.append(actual[0] - numeric_result["point_forecast"][0])
     return {
         "origins": origins,
         "horizon": horizon,
         "baseline_mae": sum(baseline_errors) / len(baseline_errors),
         "trace_fin_numeric_mae": sum(method_errors) / len(method_errors),
+        "trace_fin_evidence_mae": sum(evidence_errors) / len(evidence_errors),
         "interval_coverage_h1": sum(coverage) / len(coverage),
         "origins_with_sec_evidence": sum(count > 0 for count in evidence_counts),
         "mean_sec_evidence_count": sum(evidence_counts) / len(evidence_counts),
@@ -64,11 +72,13 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
 if __name__ == "__main__":
     parser_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("data/raw/prices_daily.csv")
     sec_path = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("data/raw/sec_filings.jsonl")
+    feature_path = Path(sys.argv[3]) if len(sys.argv) > 3 else Path("data/raw/sec_features.jsonl")
     grouped = load_prices(parser_path)
     evidence_rows = load_jsonl(sec_path)
-    results = {"source": str(parser_path), "evidence_source": str(sec_path), "symbols": {}}
+    feature_rows = load_jsonl(feature_path)
+    results = {"source": str(parser_path), "evidence_source": str(sec_path), "feature_source": str(feature_path), "symbols": {}}
     for symbol, bundle in grouped.items():
-        results["symbols"][symbol] = evaluate_series(bundle["prices"], bundle["dates"], evidence_rows, symbol)
+        results["symbols"][symbol] = evaluate_series(bundle["prices"], bundle["dates"], evidence_rows, feature_rows, symbol)
     output_path = ROOT / "results" / "real_price_results.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(results, indent=2), encoding="utf-8")

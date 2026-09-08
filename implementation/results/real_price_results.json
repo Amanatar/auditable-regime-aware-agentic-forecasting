@@ -1,12 +1,14 @@
 {
   "source": "data\\raw\\prices_daily.csv",
   "evidence_source": "data\\raw\\sec_filings.jsonl",
+  "feature_source": "data\\raw\\sec_features.jsonl",
   "symbols": {
     "AAPL": {
       "origins": 60,
       "horizon": 3,
       "baseline_mae": 6.609276326497396,
       "trace_fin_numeric_mae": 7.440808204695495,
+      "trace_fin_evidence_mae": 7.508523857571965,
       "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
       "mean_sec_evidence_count": 146.75
@@ -16,7 +18,8 @@
       "horizon": 3,
       "baseline_mae": 5.921333567301432,
       "trace_fin_numeric_mae": 6.603767089034281,
-      "interval_coverage_h1": 0.8833333333333333,
+      "trace_fin_evidence_mae": 7.911237420456589,
+      "interval_coverage_h1": 0.8666666666666667,
       "origins_with_sec_evidence": 60,
       "mean_sec_evidence_count": 83.26666666666667
     },
@@ -25,6 +28,7 @@
       "horizon": 3,
       "baseline_mae": 8.28899892171224,
       "trace_fin_numeric_mae": 8.411710639462836,
+      "trace_fin_evidence_mae": 9.395742376349855,
       "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
       "mean_sec_evidence_count": 52.15
@@ -34,6 +38,7 @@
       "horizon": 3,
       "baseline_mae": 4.458445909288195,
       "trace_fin_numeric_mae": 4.185866979033327,
+      "trace_fin_evidence_mae": 5.443102710551494,
       "interval_coverage_h1": 0.85,
       "origins_with_sec_evidence": 60,
       "mean_sec_evidence_count": 26.783333333333335
@@ -43,7 +48,8 @@
       "horizon": 3,
       "baseline_mae": 17.250053236219618,
       "trace_fin_numeric_mae": 21.560940887757113,
-      "interval_coverage_h1": 0.8666666666666667,
+      "trace_fin_evidence_mae": 21.15380091838355,
+      "interval_coverage_h1": 0.8833333333333333,
       "origins_with_sec_evidence": 60,
       "mean_sec_evidence_count": 29.8
     }
