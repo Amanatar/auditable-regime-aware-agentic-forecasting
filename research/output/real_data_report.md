@@ -4,7 +4,7 @@
 
 Daily close data for AAPL, AMZN, GOOG, JPM, and META were downloaded from the Yahoo Finance chart endpoint for 2020-01-01 through 2026-09-08. The raw table and retrieval manifest are stored under data/raw/. The experiment used 60 expanding-window rolling origins and a 3-trading-day horizon per ticker.
 
-This milestone evaluates the numeric portion of TRACE-Fin only. The evidence agent, GDELT retrieval, FRED vintage alignment, SEC extension, transaction costs, and formal Diebold–Mariano tests are not yet enabled.
+This milestone evaluates the numeric, timestamp-safe SEC lexical, and online learned-evidence ablations. GDELT retrieval and FRED vintage alignment are not enabled. Transaction-cost accounting and a dependency-free Diebold–Mariano approximation are included; the latter is still an exploratory diagnostic rather than a publication-grade HAC implementation.
 
 ## Results
 
@@ -41,6 +41,8 @@ The rolling evaluation now reports 10 bps transaction-cost-adjusted trading metr
 - JPM: numeric Sharpe 1.52; evidence variant 0.61; numeric DM p=0.922.
 - META: numeric Sharpe -1.57; evidence variant -1.66; numeric DM p=0.018.
 
-These figures are exploratory: only 60 origins per ticker, no multiple-testing correction, and a simple long/short sign rule. They do not establish deployable alpha.
+These figures are exploratory: only 60 origins per ticker and a simple long/short sign rule. The current correction output applies Benjamini–Hochberg FDR across the 15 local method-by-symbol comparisons and moving-block bootstrap intervals; no comparison remains significant at q=0.05. They do not establish deployable alpha.
+
+The leakage-safe learned evidence ablation is in `implementation/results/learned_evidence_results.json`. It fits a small ridge model only on filings available before each cutoff and earlier origins. It loses to the random walk in MAE on all five symbols in this sample; that negative result is retained as evidence against overclaiming.
 
 The optional Chronos checkpoint was not included in the headline table. Torch now imports successfully, but downloading amazon/chronos-t5-tiny from Hugging Face did not complete and no local checkpoint was cached. Reporting a TSFM number would therefore be fabricated.
