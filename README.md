@@ -2,7 +2,7 @@
 
 Timestamp-Restricted, Regime-Aware, Evidence-Audited Forecasting for Financial Returns.
 
-This repository contains the research survey, gap analysis, paper proposal, and a runnable dependency-free implementation scaffold. The method is deliberately conservative: timestamp validity, uncertainty calibration, and transaction-cost-adjusted utility are first-class outcomes.
+This repository contains the research survey, gap analysis, paper proposal, and a runnable implementation scaffold. The method is deliberately conservative: timestamp validity, uncertainty calibration, and transaction-cost-adjusted utility are first-class outcomes. The current evidence is a reproducible research milestone, not a claim of publishable alpha.
 
 ## Quick start
 
@@ -29,6 +29,24 @@ The project also supports hosted Chronos inference through TSFM.ai. Keep the cre
     python implementation/experiments/run_tsfm_api_eval.py --prices data/raw/prices_daily.csv --model amazon/chronos-bolt-tiny --origins 8 --horizon 3
 
 See research/output/tsfm_api_report.md. No API key is stored in this repository.
+
+## Publication-strengthening runs
+
+Run the leakage-safe learned SEC evidence ablation and the pre-specified
+multiple-testing correction locally:
+
+    python implementation/experiments/run_learned_evidence.py data/raw/prices_daily.csv data/raw/sec_features.jsonl 60
+    python implementation/experiments/run_multiple_testing.py implementation/results/real_price_results.json
+
+For hosted TSFM evaluation, set `TSFM_API_KEY` only in the process environment
+and run the multi-model evaluator. It defaults to Chronos-Bolt Tiny, TimesFM
+2.5 200M, and Moirai 2.0 Small over 20 origins per ticker:
+
+    python implementation/experiments/run_tsfm_api_eval.py --origins 20 --horizon 3
+    python implementation/experiments/run_multiple_testing.py implementation/results/tsfm_api_multi_eval.json
+
+Unavailable hosted models are retained as explicit errors; no result is
+silently imputed. The key is never written to JSON, logs, or Git.
 
 ## Layout
 

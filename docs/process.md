@@ -12,6 +12,7 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 4. **Ablations (1–2 days):** remove regime detector, evidence, cutoff restriction, conformal layer, and replace evidence with shuffled/placebo snippets.
 5. **Results and stress tests (2 days):** evaluate calm versus shift windows, compute calibration and cost-adjusted utility, run Diebold–Mariano and block-bootstrap tests, and inspect ledger replay failures.
 6. **Write-up (2–3 days):** document protocol, limitations, negative results, data licenses, reproducibility commands, and a table of all pre-registered metrics.
+7. **Publication-strengthening pass (1–2 days on hosted API):** run at least 20–60 origins for each accessible TSFM model, preserve per-origin losses, apply Benjamini–Hochberg FDR across the complete model-by-symbol family, and report moving-block bootstrap intervals. Fit the SEC evidence learner online, using only filings available before each cutoff and only earlier origins for its target regression.
 
 ## Reproducibility gates
 
@@ -23,4 +24,4 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 
 ## Immediate next milestone
 
-The price bootstrap, SEC evidence audit, cost-aware metrics, and 60-origin evaluation now run on five tickers. The next milestone is a learned/calibrated text feature and a licensed or archived news corpus; do not claim TSFM gains until the optional checkpoint is installed and evaluated under the same folds.
+The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, FDR correction, and block-bootstrap intervals now run on five tickers. The hosted multi-model sweep is the next externally dependent milestone; do not claim TSFM gains until every accessible model completes the same folds and the corrected intervals are reported.

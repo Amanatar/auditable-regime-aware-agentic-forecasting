@@ -1,12 +1,12 @@
-# TSFM.ai Chronos-Bolt benchmark
+# TSFM.ai hosted-forecast benchmark
 
 ## Authentication and model
 
-The supplied credential validated successfully against TSFM.ai. The API catalog showed Chronos-Bolt models. amazon/chronos-bolt-small returned model-access denial, so the accessible amazon/chronos-bolt-tiny model was used. The key was supplied only through the TSFM_API_KEY process environment and is not stored in the repository or result files.
+The supplied credential validated successfully against TSFM.ai in the earlier smoke run. The API catalog exposed Chronos-Bolt Tiny, TimesFM 2.0/2.5, and several Moirai variants; Chronos-Bolt Small returned model-access denial, so only Chronos-Bolt Tiny has a measured result so far. The key was supplied only through the TSFM_API_KEY process environment and is not stored in the repository or result files.
 
 ## Protocol
 
-The run used the same Yahoo Finance daily-close table as the numeric experiment, with 8 expanding rolling origins per ticker, a 64-point context, a 3-trading-day horizon, and 10 bps trading-cost accounting. Results are exploratory because 8 origins is too small for a reliable significance claim.
+The completed run used the same Yahoo Finance daily-close table as the numeric experiment, with 8 expanding rolling origins per ticker, a 64-point context, a 3-trading-day horizon, and 10 bps trading-cost accounting. Results are exploratory because 8 origins is too small for a reliable significance claim. The evaluator now supports a 20-origin multi-model sweep and stores per-origin loss differences for correction, but that expanded sweep is not yet run in the current shell because TSFM_API_KEY is not present.
 
 | Symbol | Chronos-Bolt MAE | Random-walk MAE | TSFM net Sharpe | DM p-value |
 |---|---:|---:|---:|---:|
@@ -30,5 +30,12 @@ Outputs:
 
 - implementation/results/tsfm_api_sample.json
 - implementation/results/tsfm_api_eval.json
+- implementation/results/tsfm_api_multi_eval.json (after the expanded sweep)
+- implementation/results/multiple_testing.json (after the expanded sweep)
+
+The expanded command is:
+
+    python implementation/experiments/run_tsfm_api_eval.py --models amazon/chronos-bolt-tiny,google/timesfm-2.5-200m-pytorch,Salesforce/moirai-2.0-R-small --origins 20 --horizon 3
+    python implementation/experiments/run_multiple_testing.py implementation/results/tsfm_api_multi_eval.json
 
 After use, rotate the supplied API key because it was pasted into a chat transcript.

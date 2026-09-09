@@ -76,6 +76,8 @@ def evaluate_series(prices: list[float], dates: list[str], evidence_rows: list[d
         "mean_sec_evidence_count": sum(evidence_counts) / len(evidence_counts),
         "dm_numeric_vs_random_walk": diebold_mariano_squared(h1_actual, h1_numeric, h1_baseline),
         "dm_evidence_vs_random_walk": diebold_mariano_squared(h1_actual, h1_evidence, h1_baseline),
+        "loss_differences_numeric": [(a - n) ** 2 - (a - b) ** 2 for a, n, b in zip(h1_actual, h1_numeric, h1_baseline)],
+        "loss_differences_evidence": [(a - e) ** 2 - (a - b) ** 2 for a, e, b in zip(h1_actual, h1_evidence, h1_baseline)],
         "numeric_trading": trading_metrics(h1_last, h1_numeric, h1_actual),
         "evidence_trading": trading_metrics(h1_last, h1_evidence, h1_actual),
     }
