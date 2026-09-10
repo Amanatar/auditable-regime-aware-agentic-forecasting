@@ -13,6 +13,7 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 5. **Results and stress tests (2 days):** evaluate calm versus shift windows, compute calibration and cost-adjusted utility, run Diebold–Mariano and block-bootstrap tests, and inspect ledger replay failures.
 6. **Write-up (2–3 days):** document protocol, limitations, negative results, data licenses, reproducibility commands, and a table of all pre-registered metrics.
 7. **Publication-strengthening pass (1–2 days on hosted API):** run at least 20–60 origins for each accessible TSFM model, preserve per-origin losses, apply Benjamini–Hochberg FDR across the complete model-by-symbol family, and report moving-block bootstrap intervals. Fit the SEC evidence learner online, using only filings available before each cutoff and only earlier origins for its target regression.
+8. **Out-of-time holdout (1 day):** run the final contiguous ten-asset stress test, use HAC DM diagnostics at the forecast-horizon lag, correct the 20 method-by-symbol comparisons, and disclose where SEC evidence coverage is missing.
 
 ## Reproducibility gates
 
@@ -24,4 +25,4 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 
 ## Immediate next milestone
 
-The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, FDR correction, and block-bootstrap intervals now run on five tickers. The hosted multi-model sweep is the next externally dependent milestone; do not claim TSFM gains until every accessible model completes the same folds and the corrected intervals are reported.
+The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, HAC DM diagnostics, FDR correction, block-bootstrap intervals, hosted 20-origin multi-model sweep, and ten-asset final holdout now run from scripts. The remaining publication gates are a larger 60-origin hosted sweep, independent market origins, and a substantially larger timestamped evidence corpus.

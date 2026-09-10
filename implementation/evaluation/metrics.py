@@ -7,17 +7,36 @@ from statistics import mean, pstdev
 from typing import Sequence
 
 
-def diebold_mariano_squared(actual: Sequence[float], first: Sequence[float], second: Sequence[float], lag: int = 1) -> dict:
+def diebold_mariano_hac(actual: Sequence[float], first: Sequence[float], second: Sequence[float], lag: int = 1) -> dict:
+    """Diebold–Mariano-style statistic with Bartlett Newey–West variance.
+
+    This remains dependency-free and is intended for transparent diagnostics;
+    publication analysis should cross-check it against a validated statistics
+    package. The loss is squared-error difference (first minus second).
+    """
     losses = [(a - x) ** 2 - (a - y) ** 2 for a, x, y in zip(actual, first, second)]
     if len(losses) < 3:
         return {"stat": 0.0, "p_value": 1.0, "n": len(losses)}
     avg = mean(losses)
-    variance = sum((x - avg) ** 2 for x in losses) / len(losses)
-    for k in range(1, min(lag, len(losses) - 1) + 1):
+    n = len(losses)
+    centered = [x - avg for x in losses]
+    variance = sum(x * x for x in centered) / n
+    max_lag = min(max(0, lag), n - 1)
+    for k in range(1, max_lag + 1):
         covariance = sum((losses[i] - avg) * (losses[i - k] - avg) for i in range(k, len(losses))) / len(losses)
-        variance += 2.0 * covariance
-    statistic = avg / math.sqrt(max(variance, 1e-12) / len(losses))
-    return {"stat": statistic, "p_value": math.erfc(abs(statistic) / math.sqrt(2.0)), "n": len(losses)}
+        variance += 2.0 * (1.0 - k / (max_lag + 1.0)) * covariance
+    if variance <= 1e-12:
+        statistic = 0.0 if abs(avg) <= 1e-12 else math.copysign(float("inf"), avg)
+        p_value = 1.0 if statistic == 0.0 else 0.0
+        return {"stat": statistic, "p_value": p_value, "n": n, "lag": max_lag}
+    statistic = avg / math.sqrt(variance / n)
+    p_value = math.erfc(abs(statistic) / math.sqrt(2.0))
+    return {"stat": statistic, "p_value": p_value, "n": n, "lag": max_lag}
+
+
+def diebold_mariano_squared(actual: Sequence[float], first: Sequence[float], second: Sequence[float], lag: int = 1) -> dict:
+    """Backward-compatible alias for the HAC implementation."""
+    return diebold_mariano_hac(actual, first, second, lag=lag)
 
 
 def trading_metrics(last_prices: Sequence[float], forecasts: Sequence[float], actual: Sequence[float], cost_bps: float = 10.0) -> dict:

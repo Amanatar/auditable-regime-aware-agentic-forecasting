@@ -1,6 +1,7 @@
 import unittest
 
 from implementation.evaluation.multiple_testing import benjamini_hochberg, moving_block_bootstrap_ci
+from implementation.evaluation.metrics import diebold_mariano_hac
 
 
 class MultipleTestingTests(unittest.TestCase):
@@ -17,6 +18,16 @@ class MultipleTestingTests(unittest.TestCase):
         second = moving_block_bootstrap_ci(values, block_length=4, replicates=100, seed=3)
         self.assertEqual(first, second)
         self.assertLess(first["lower_95"], first["upper_95"])
+
+    def test_hac_dm_reports_horizon_lag(self):
+        result = diebold_mariano_hac(
+            [1.0, 2.0, 3.0, 4.0, 5.0],
+            [1.2, 2.2, 3.2, 4.2, 5.2],
+            [1.0, 2.0, 3.0, 4.0, 5.0],
+            lag=2,
+        )
+        self.assertEqual(result["n"], 5)
+        self.assertEqual(result["lag"], 2)
 
 
 if __name__ == "__main__":

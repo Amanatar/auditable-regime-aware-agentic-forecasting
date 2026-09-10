@@ -1,216 +1,216 @@
 {
-  "source": "implementation\\results\\tsfm_api_multi_eval.json",
+  "source": "implementation\\results\\real_price_results.json",
   "family": "all method/model by symbol DM comparisons supplied in the input",
   "method": "Benjamini-Hochberg FDR at q=0.05; moving-block bootstrap 95% CI for mean squared-loss difference",
   "tests": [
     {
-      "model": "amazon/chronos-bolt-tiny",
+      "model": "trace_fin_numeric",
       "symbol": "AAPL",
-      "raw_p_value": 0.7622667701680128,
+      "raw_p_value": 0.01864308535586551,
       "loss_difference_ci": {
-        "mean": 0.7384945730213076,
-        "lower_95": -2.8047635233495383,
-        "upper_95": 2.9059243739582596,
-        "n": 20,
+        "mean": 15.027957161489823,
+        "lower_95": 1.68102137402566,
+        "upper_95": 27.90723268342061,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.7622667701680128,
+      "bh_q_value": 0.09321542677932755,
       "fdr_significant_05": false
     },
     {
-      "model": "amazon/chronos-bolt-tiny",
-      "symbol": "AMZN",
-      "raw_p_value": 0.0028030781602298594,
-      "loss_difference_ci": {
-        "mean": 8.53731404967839,
-        "lower_95": 2.380177911464125,
-        "upper_95": 15.972178891696966,
-        "n": 20,
-        "block_length": 5
-      },
-      "bh_q_value": 0.022517470482330663,
-      "fdr_significant_05": true
-    },
-    {
-      "model": "amazon/chronos-bolt-tiny",
-      "symbol": "GOOG",
-      "raw_p_value": 0.7118164509639352,
-      "loss_difference_ci": {
-        "mean": -1.7996012257412075,
-        "lower_95": -8.099959174729884,
-        "upper_95": 4.746836656704545,
-        "n": 20,
-        "block_length": 5
-      },
-      "bh_q_value": 0.7622667701680128,
-      "fdr_significant_05": false
-    },
-    {
-      "model": "amazon/chronos-bolt-tiny",
-      "symbol": "JPM",
-      "raw_p_value": 0.004503494096466133,
-      "loss_difference_ci": {
-        "mean": 2.888022374222055,
-        "lower_95": 0.6582537329290062,
-        "upper_95": 6.232570947194472,
-        "n": 20,
-        "block_length": 5
-      },
-      "bh_q_value": 0.022517470482330663,
-      "fdr_significant_05": true
-    },
-    {
-      "model": "amazon/chronos-bolt-tiny",
-      "symbol": "META",
-      "raw_p_value": 0.003906824522746536,
-      "loss_difference_ci": {
-        "mean": 77.39271680768579,
-        "lower_95": 20.96152576431632,
-        "upper_95": 147.24122070893645,
-        "n": 20,
-        "block_length": 5
-      },
-      "bh_q_value": 0.022517470482330663,
-      "fdr_significant_05": true
-    },
-    {
-      "model": "google/timesfm-2.5-200m-pytorch",
+      "model": "trace_fin_lexical_evidence",
       "symbol": "AAPL",
-      "raw_p_value": 0.6007666095140547,
+      "raw_p_value": 0.025544866601923556,
       "loss_difference_ci": {
-        "mean": -0.48557208976708355,
-        "lower_95": -2.536724730441347,
-        "upper_95": 0.987703986139968,
-        "n": 20,
+        "mean": 16.798382080855397,
+        "lower_95": 1.5526050067132924,
+        "upper_95": 33.86117571086083,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.7258623909172853,
+      "bh_q_value": 0.09579324975721333,
       "fdr_significant_05": false
     },
     {
-      "model": "google/timesfm-2.5-200m-pytorch",
+      "model": "trace_fin_numeric",
       "symbol": "AMZN",
-      "raw_p_value": 0.4967652041691551,
+      "raw_p_value": 0.10038027733426866,
       "loss_difference_ci": {
-        "mean": -1.4931532815564423,
-        "lower_95": -4.7391122845932845,
-        "upper_95": 3.747383387433365,
-        "n": 20,
+        "mean": 6.3478007305107536,
+        "lower_95": -0.8887637305984389,
+        "upper_95": 14.968700197361606,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6774070965943024,
+      "bh_q_value": 0.1768906339961687,
       "fdr_significant_05": false
     },
     {
-      "model": "google/timesfm-2.5-200m-pytorch",
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "AMZN",
+      "raw_p_value": 0.04294315778246969,
+      "loss_difference_ci": {
+        "mean": 10.584262402332824,
+        "lower_95": -0.13735749302883365,
+        "upper_95": 25.448327410533874,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.12882947334740907,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
       "symbol": "GOOG",
-      "raw_p_value": 0.4071592423423039,
+      "raw_p_value": 0.24113832435239715,
       "loss_difference_ci": {
-        "mean": -1.5873125315178185,
-        "lower_95": -3.751366721233353,
-        "upper_95": 1.4591963544022293,
-        "n": 20,
+        "mean": 14.158356840334378,
+        "lower_95": -3.4386710450011204,
+        "upper_95": 40.461636308793274,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.2967973212974953,
       "fdr_significant_05": false
     },
     {
-      "model": "google/timesfm-2.5-200m-pytorch",
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "GOOG",
+      "raw_p_value": 0.11792708933077913,
+      "loss_difference_ci": {
+        "mean": 19.249605269209617,
+        "lower_95": 0.31643456816761023,
+        "upper_95": 44.2387790857313,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
       "symbol": "JPM",
-      "raw_p_value": 0.3506141014833379,
+      "raw_p_value": 0.924765985972815,
       "loss_difference_ci": {
-        "mean": 2.8596728847362103,
-        "lower_95": -0.962762976065278,
-        "upper_95": 8.335842573968694,
-        "n": 20,
+        "mean": -0.1636525896131217,
+        "lower_95": -3.1398819740656405,
+        "upper_95": 2.9984681893356684,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.924765985972815,
       "fdr_significant_05": false
     },
     {
-      "model": "google/timesfm-2.5-200m-pytorch",
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "JPM",
+      "raw_p_value": 0.09247532394318835,
+      "loss_difference_ci": {
+        "mean": 4.5056251292484735,
+        "lower_95": -0.13517410035530117,
+        "upper_95": 10.36552844003446,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
       "symbol": "META",
-      "raw_p_value": 0.3588204453846001,
+      "raw_p_value": 0.010123096828672093,
       "loss_difference_ci": {
-        "mean": 29.832239547371863,
-        "lower_95": -13.31698697116226,
-        "upper_95": 92.13492786064744,
-        "n": 20,
+        "mean": 131.4682251599095,
+        "lower_95": 22.276671533168766,
+        "upper_95": 277.5825220659002,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.09321542677932755,
       "fdr_significant_05": false
     },
     {
-      "model": "Salesforce/moirai-2.0-R-small",
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "META",
+      "raw_p_value": 0.01756132264186314,
+      "loss_difference_ci": {
+        "mean": 134.68415138733118,
+        "lower_95": 15.776124571796448,
+        "upper_95": 303.27256619927516,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09321542677932755,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
       "symbol": "AAPL",
-      "raw_p_value": 0.4207459460911932,
+      "raw_p_value": 0.10614667820359754,
       "loss_difference_ci": {
-        "mean": -0.46950418055057525,
-        "lower_95": -1.4016070599202066,
-        "upper_95": 0.9067803334444762,
-        "n": 20,
+        "mean": 7.1417730402836215,
+        "lower_95": 0.8333786210032257,
+        "upper_95": 18.020233026454,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.1768906339961687,
       "fdr_significant_05": false
     },
     {
-      "model": "Salesforce/moirai-2.0-R-small",
+      "model": "trace_fin_learned_evidence",
       "symbol": "AMZN",
-      "raw_p_value": 0.42329822939682515,
+      "raw_p_value": 0.09489691807509389,
       "loss_difference_ci": {
-        "mean": -1.5114646533038467,
-        "lower_95": -3.3680971989408137,
-        "upper_95": 0.9943724844604731,
-        "n": 20,
+        "mean": 19.701968257069755,
+        "lower_95": 1.6813839408698426,
+        "upper_95": 47.79097668860806,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.1768906339961687,
       "fdr_significant_05": false
     },
     {
-      "model": "Salesforce/moirai-2.0-R-small",
+      "model": "trace_fin_learned_evidence",
       "symbol": "GOOG",
-      "raw_p_value": 0.18399511378461647,
+      "raw_p_value": 0.42134466247782104,
       "loss_difference_ci": {
-        "mean": -1.9448980273213237,
-        "lower_95": -3.493789176968858,
-        "upper_95": 0.1624645186588168,
-        "n": 20,
+        "mean": 7.4898317555604335,
+        "lower_95": -5.169055808715518,
+        "upper_95": 22.375276380004006,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.4514407097976654,
       "fdr_significant_05": false
     },
     {
-      "model": "Salesforce/moirai-2.0-R-small",
+      "model": "trace_fin_learned_evidence",
       "symbol": "JPM",
-      "raw_p_value": 0.4375832155014786,
+      "raw_p_value": 0.25722434512449593,
       "loss_difference_ci": {
-        "mean": 2.3252416577190163,
-        "lower_95": -1.478329416597262,
-        "upper_95": 8.71864514304325,
-        "n": 20,
+        "mean": 1.6685035514124744,
+        "lower_95": -0.12675118878138183,
+        "upper_95": 4.91547909656045,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.6563748232522179,
+      "bh_q_value": 0.2967973212974953,
       "fdr_significant_05": false
     },
     {
-      "model": "Salesforce/moirai-2.0-R-small",
+      "model": "trace_fin_learned_evidence",
       "symbol": "META",
-      "raw_p_value": 0.6290807387949806,
+      "raw_p_value": 0.1408300356149787,
       "loss_difference_ci": {
-        "mean": 6.882421560585499,
-        "lower_95": -15.676840104721487,
-        "upper_95": 37.955148602835834,
-        "n": 20,
+        "mean": 64.84254594519395,
+        "lower_95": 12.332762877371032,
+        "upper_95": 165.90350618967292,
+        "n": 60,
         "block_length": 5
       },
-      "bh_q_value": 0.7258623909172853,
+      "bh_q_value": 0.19204095765678914,
       "fdr_significant_05": false
     }
   ]

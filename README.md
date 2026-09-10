@@ -45,6 +45,16 @@ and run the multi-model evaluator. It defaults to Chronos-Bolt Tiny, TimesFM
     python implementation/experiments/run_tsfm_api_eval.py --origins 20 --horizon 3
     python implementation/experiments/run_multiple_testing.py implementation/results/tsfm_api_multi_eval.json
 
+Run the expanded ten-asset final contiguous holdout and its HAC/FDR audit:
+
+    python implementation/data/download_prices.py --output-dir data/raw_expanded --start 2020-01-01 --end 2026-09-10 --symbols AAPL AMZN GOOG JPM META MSFT NVDA TSLA SPY QQQ
+    python implementation/experiments/run_holdout_experiment.py --prices data/raw_expanded/prices_daily.csv --holdout-origins 20 --horizon 3
+    python implementation/experiments/run_multiple_testing.py implementation/results/holdout_results.json implementation/results/holdout_multiple_testing.json
+
+The holdout report is `research/output/holdout_report.md`. SEC evidence is currently
+available only for the original five symbols; the added five assets are a price-only
+stress test and do not establish cross-asset evidence generalization.
+
 Unavailable hosted models are retained as explicit errors; no result is
 silently imputed. The key is never written to JSON, logs, or Git.
 

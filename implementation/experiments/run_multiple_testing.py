@@ -12,6 +12,7 @@ from multiple_testing import benjamini_hochberg, moving_block_bootstrap_ci
 
 
 input_path = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "results" / "tsfm_api_multi_eval.json"
+output = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "results" / "multiple_testing.json"
 payload = json.loads(input_path.read_text(encoding="utf-8"))
 tests = []
 if "models" in payload:
@@ -27,13 +28,19 @@ if "models" in payload:
                 "loss_difference_ci": moving_block_bootstrap_ci(result.get("loss_differences", [])),
             })
 else:
-    # The local 60-origin table is also a pre-specified family: numeric,
-    # lexical evidence, and learned evidence versus the same random walk.
+    # The local expanding-window and final-holdout tables are each a
+    # pre-specified family. The holdout uses HAC DM statistics and keeps its
+    # corrected output separate from the expanding-window results.
+    holdout = "holdout_protocol" in payload
+    method_specs = (
+        ("trace_fin_numeric_holdout", "dm_hac_numeric_vs_random_walk", "loss_differences_numeric"),
+        ("trace_fin_lexical_evidence_holdout", "dm_hac_evidence_vs_random_walk", "loss_differences_evidence"),
+    ) if holdout else (
+        ("trace_fin_numeric", "dm_numeric_vs_random_walk", "loss_differences_numeric"),
+        ("trace_fin_lexical_evidence", "dm_evidence_vs_random_walk", "loss_differences_evidence"),
+    )
     for symbol, result in payload.get("symbols", {}).items():
-        for label, dm_key, loss_key in (
-            ("trace_fin_numeric", "dm_numeric_vs_random_walk", "loss_differences_numeric"),
-            ("trace_fin_lexical_evidence", "dm_evidence_vs_random_walk", "loss_differences_evidence"),
-        ):
+        for label, dm_key, loss_key in method_specs:
             tests.append({
                 "model": label,
                 "symbol": symbol,
@@ -41,7 +48,7 @@ else:
                 "loss_difference_ci": moving_block_bootstrap_ci(result.get(loss_key, [])),
             })
     learned_path = ROOT / "results" / "learned_evidence_results.json"
-    if learned_path.exists():
+    if learned_path.exists() and not holdout:
         learned = json.loads(learned_path.read_text(encoding="utf-8"))
         for symbol, result in learned.get("symbols", {}).items():
             tests.append({
@@ -54,7 +61,6 @@ adjusted = benjamini_hochberg([test["raw_p_value"] for test in tests])
 for test, value in zip(tests, adjusted):
     test["bh_q_value"] = value
     test["fdr_significant_05"] = value < 0.05
-output = ROOT / "results" / "multiple_testing.json"
 result = {
     "source": str(input_path),
     "family": "all method/model by symbol DM comparisons supplied in the input",
