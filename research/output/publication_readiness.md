@@ -4,7 +4,7 @@
 
 - **Leakage-safe learned evidence:** `run_learned_evidence.py` fits a seven-feature ridge model online. At each origin it uses only SEC rows with `available_at <= cutoff` and only earlier origins whose next-day return is already observed. The 60-origin output is `implementation/results/learned_evidence_results.json`; the cutoff audit reports zero failures for all five symbols.
 - **Multiple testing:** `run_multiple_testing.py` applies Benjamini–Hochberg FDR across the 15 local method-by-symbol comparisons (numeric TRACE-Fin, lexical evidence, and learned evidence) and moving-block bootstrap intervals for the mean squared-loss difference. The output is `implementation/results/multiple_testing.json`.
-- **Hosted TSFM protocol:** `run_tsfm_api_eval.py` now supports Chronos, TimesFM, and Moirai model IDs, retries transient failures, retains explicit model errors, and stores per-origin losses without persisting the API key. The prior 8-origin Chronos-Bolt Tiny run remains in `implementation/results/tsfm_api_eval.json`.
+- **Hosted TSFM protocol:** `run_tsfm_api_eval.py` now supports Chronos, TimesFM, and Moirai model IDs, retries transient failures, retains explicit model errors, and stores per-origin losses without persisting the API key. The completed expanded run covers 3 models × 5 tickers × 20 origins in `implementation/results/tsfm_api_multi_eval.json`.
 
 ## What the corrected local evidence says
 
@@ -12,10 +12,10 @@ The strongest uncorrected local p-values (AAPL and META numeric/evidence compari
 
 ## Still required before calling the paper publication-ready
 
-1. Run the expanded hosted sweep with at least 20–60 origins per ticker for every accessible model (Chronos-Bolt Tiny, TimesFM, and Moirai where the account permits), then apply FDR across that complete family.
+1. Increase the hosted sweep from 20 to at least 60 origins per ticker and add independent market origins before making a final claim. The completed 20-origin family is still an interim power check.
 2. Replace the current three-document-per-symbol lexical sample (15 documents total) with a larger archived SEC/news corpus and pre-register the vocabulary, training window, and target horizon.
 3. Add multiple independent market origins and an out-of-time holdout; five tickers and one recent window are not enough for a general claim.
 4. Replace the dependency-free DM approximation with a validated HAC/DM implementation and report confidence intervals for economic metrics.
 5. Archive raw responses, environment versions, and a replay ledger, then write the final manuscript only after every cited URL and every reported result is re-run from a clean checkout.
 
-The repository is therefore **research-complete as an auditable, runnable milestone**, but **not yet a publication-ready final paper** until the hosted sweep and broader out-of-time validation are completed.
+The repository is therefore **research-complete as an auditable, runnable milestone**, but **not yet a publication-ready final paper** until the larger out-of-time validation and stronger evidence corpus are completed.

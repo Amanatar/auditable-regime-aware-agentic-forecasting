@@ -6,7 +6,9 @@ The supplied credential validated successfully against TSFM.ai in the earlier sm
 
 ## Protocol
 
-The completed run used the same Yahoo Finance daily-close table as the numeric experiment, with 8 expanding rolling origins per ticker, a 64-point context, a 3-trading-day horizon, and 10 bps trading-cost accounting. Results are exploratory because 8 origins is too small for a reliable significance claim. The evaluator now supports a 20-origin multi-model sweep and stores per-origin loss differences for correction, but that expanded sweep is not yet run in the current shell because TSFM_API_KEY is not present.
+The completed expanded run used the same Yahoo Finance daily-close table, 20 expanding rolling origins per ticker, a 64-point context, a 3-trading-day horizon, and 10 bps trading-cost accounting. It evaluated Chronos-Bolt Tiny, TimesFM 2.5 200M, and Moirai 2.0 Small: 300 hosted forecasts in total. Every model had five successful ticker folds.
+
+Across symbols, mean MAE was 6.7103 (Chronos), 5.6912 (TimesFM), and 5.4036 (Moirai), versus 4.1046 for the random walk. Each model lost on all five symbols in this window. The per-origin losses are retained for statistical correction rather than only reporting aggregate MAE.
 
 | Symbol | Chronos-Bolt MAE | Random-walk MAE | TSFM net Sharpe | DM p-value |
 |---|---:|---:|---:|---:|
@@ -17,6 +19,8 @@ The completed run used the same Yahoo Finance daily-close table as the numeric e
 | META | 20.0093 | 6.7688 | -11.59 | <0.000001 |
 
 The model loses to the random walk on all five MAE comparisons in this short window. The positive-looking AAPL/JPM trading figures are not evidence of generalizable alpha because the sample is small and the API model is being evaluated on a single recent slice.
+
+After Benjamini–Hochberg correction over all 15 hosted-model-by-symbol tests, three Chronos comparisons remain significant at q<0.05: AMZN (q=0.0225), JPM (q=0.0225), and META (q=0.0225). All three bootstrap intervals are positive, indicating significantly higher squared error than the random walk, not an improvement. No TimesFM or Moirai comparison is significant.
 
 ## Reproduce
 
@@ -31,7 +35,7 @@ Outputs:
 - implementation/results/tsfm_api_sample.json
 - implementation/results/tsfm_api_eval.json
 - implementation/results/tsfm_api_multi_eval.json (after the expanded sweep)
-- implementation/results/multiple_testing.json (after the expanded sweep)
+- implementation/results/multiple_testing.json
 
 The expanded command is:
 
