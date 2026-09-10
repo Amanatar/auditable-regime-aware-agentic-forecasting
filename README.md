@@ -55,6 +55,14 @@ The holdout report is `research/output/holdout_report.md`. SEC evidence is curre
 available only for the original five symbols; the added five assets are a price-only
 stress test and do not establish cross-asset evidence generalization.
 
+Run three separated 60-origin windows (180 origins per asset) for the independent
+market-period stress test:
+
+    python implementation/experiments/run_multi_window_holdout.py --origins-per-window 60 --horizon 3
+    python implementation/experiments/run_multiple_testing.py implementation/results/multi_window_holdout_results.json implementation/results/multi_window_holdout_multiple_testing.json
+
+See `research/output/multi_window_holdout_report.md` for the pooled negative-result audit.
+
 Unavailable hosted models are retained as explicit errors; no result is
 silently imputed. The key is never written to JSON, logs, or Git.
 

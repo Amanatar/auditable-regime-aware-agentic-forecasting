@@ -14,6 +14,7 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 6. **Write-up (2–3 days):** document protocol, limitations, negative results, data licenses, reproducibility commands, and a table of all pre-registered metrics.
 7. **Publication-strengthening pass (1–2 days on hosted API):** run at least 20–60 origins for each accessible TSFM model, preserve per-origin losses, apply Benjamini–Hochberg FDR across the complete model-by-symbol family, and report moving-block bootstrap intervals. Fit the SEC evidence learner online, using only filings available before each cutoff and only earlier origins for its target regression.
 8. **Out-of-time holdout (1 day):** run the final contiguous ten-asset stress test, use HAC DM diagnostics at the forecast-horizon lag, correct the 20 method-by-symbol comparisons, and disclose where SEC evidence coverage is missing.
+9. **Independent-window stress test (1 day):** repeat the holdout in three separated market periods, pool only pre-specified loss differences, and report both pooled and per-window diagnostics.
 
 ## Reproducibility gates
 
@@ -25,4 +26,4 @@ The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU sess
 
 ## Immediate next milestone
 
-The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, HAC DM diagnostics, FDR correction, block-bootstrap intervals, hosted 20-origin multi-model sweep, and ten-asset final holdout now run from scripts. The remaining publication gates are a larger 60-origin hosted sweep, independent market origins, and a substantially larger timestamped evidence corpus.
+The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, HAC DM diagnostics, FDR correction, block-bootstrap intervals, hosted 20-origin multi-model sweep, ten-asset final holdout, and three-window 180-origin-per-asset stress test now run from scripts. The remaining publication gates are a larger hosted TSFM sweep with a rotated credential, a pre-registered live/archived evidence corpus, and independent replication on a fresh data snapshot.
