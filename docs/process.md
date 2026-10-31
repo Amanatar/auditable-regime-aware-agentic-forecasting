@@ -1,0 +1,29 @@
+# TRACE-Fin process plan
+
+## Compute and operating assumptions
+
+The first pass is designed for a Kaggle kernel or Colab-tier CPU/single-GPU session. The smoke experiment is dependency-free and runs locally. Full experiments should use small pretrained TSFM checkpoints, cached data, and one fold at a time; no GPU cluster is assumed. Unattended sweeps belong in Kaggle, while interactive debugging belongs in Colab with a persistent terminal/tmux session.
+
+## Milestones
+
+1. **Data preparation (1–2 days):** download daily prices, FRED/ALFRED release-aware series, GDELT/SEC records; normalize publication timestamps; create checksummed manifests; implement a cutoff validator.
+2. **Baseline reproduction (1 day):** run random walk, DLinear, and iTransformer/Chronos baselines on identical rolling-origin folds; save predictions, metrics, and environment metadata. Torch imports successfully, but the Chronos checkpoint download timed out; no TSFM checkpoint result is claimed until the model is locally cached.
+3. **TRACE-Fin method (2–3 days):** implement online regime features, timestamp-safe retrieval, constrained evidence schema, gated ensemble, and conformal calibration.
+4. **Ablations (1–2 days):** remove regime detector, evidence, cutoff restriction, conformal layer, and replace evidence with shuffled/placebo snippets.
+5. **Results and stress tests (2 days):** evaluate calm versus shift windows, compute calibration and cost-adjusted utility, run Diebold–Mariano and block-bootstrap tests, and inspect ledger replay failures.
+6. **Write-up (2–3 days):** document protocol, limitations, negative results, data licenses, reproducibility commands, and a table of all pre-registered metrics.
+7. **Publication-strengthening pass (1–2 days on hosted API):** run at least 20–60 origins for each accessible TSFM model, preserve per-origin losses, apply Benjamini–Hochberg FDR across the complete model-by-symbol family, and report moving-block bootstrap intervals. Fit the SEC evidence learner online, using only filings available before each cutoff and only earlier origins for its target regression.
+8. **Out-of-time holdout (1 day):** run the final contiguous ten-asset stress test, use HAC DM diagnostics at the forecast-horizon lag, correct the 20 method-by-symbol comparisons, and disclose where SEC evidence coverage is missing.
+9. **Independent-window stress test (1 day):** repeat the holdout in three separated market periods, pool only pre-specified loss differences, and report both pooled and per-window diagnostics.
+
+## Reproducibility gates
+
+- Every forecast has a cutoff timestamp and input/evidence hash.
+- No training or calibration row may occur after the forecast cutoff.
+- Every baseline and ablation uses the same folds and transaction-cost assumptions.
+- Results are written as JSON/CSV plus the exact configuration and package versions.
+- A replay checker must reconstruct at least 99% of sampled forecasts before a result is considered publishable.
+
+## Immediate next milestone
+
+The price bootstrap, SEC evidence audit, cost-aware metrics, 60-origin evaluation, leakage-safe learned evidence ablation, HAC DM diagnostics, FDR correction, block-bootstrap intervals, hosted 20-origin multi-model sweep, ten-asset final holdout, and three-window 180-origin-per-asset stress test now run from scripts. The remaining publication gates are a larger hosted TSFM sweep with a rotated credential, a pre-registered live/archived evidence corpus, and independent replication on a fresh data snapshot.

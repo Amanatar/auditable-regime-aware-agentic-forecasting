@@ -1,0 +1,23 @@
+"""Record whether optional pretrained TSFM dependencies are available."""
+
+from __future__ import annotations
+
+import importlib.util
+import json
+from pathlib import Path
+
+
+if __name__ == "__main__":
+    status = {
+        "chronos": bool(importlib.util.find_spec("chronos")),
+        "torch": bool(importlib.util.find_spec("torch")),
+        "transformers": bool(importlib.util.find_spec("transformers")),
+        "run_status": "checkpoint_download_timeout",
+        "reason": "Torch imports successfully, but loading amazon/chronos-t5-tiny from Hugging Face did not complete within the available run window and no local checkpoint was cached; no TSFM result is claimed.",
+        "api_adapter": "TSFM.ai",
+        "api_model_smoke": "amazon/chronos-bolt-tiny",
+        "api_run_status": "completed",
+    }
+    output = Path(__file__).resolve().parents[1] / "results" / "optional_tsfm_status.json"
+    output.write_text(json.dumps(status, indent=2), encoding="utf-8")
+    print(json.dumps(status, indent=2))

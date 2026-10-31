@@ -1,0 +1,287 @@
+{
+  "source": "implementation\\results\\holdout_results.json",
+  "family": "all method/model by symbol DM comparisons supplied in the input",
+  "method": "Benjamini-Hochberg FDR at q=0.05; moving-block bootstrap 95% CI for mean squared-loss difference",
+  "tests": [
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "AAPL",
+      "raw_p_value": 0.0063600714984398616,
+      "loss_difference_ci": {
+        "mean": 8.020395690218187,
+        "lower_95": 4.504236075058811,
+        "upper_95": 13.662794628477162,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "AAPL",
+      "raw_p_value": 0.030787817861988157,
+      "loss_difference_ci": {
+        "mean": 5.545496225182274,
+        "lower_95": 1.946200580198914,
+        "upper_95": 9.311796452404673,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "AMZN",
+      "raw_p_value": 0.5783149501750107,
+      "loss_difference_ci": {
+        "mean": 1.7080428071876255,
+        "lower_95": -3.3210744291117655,
+        "upper_95": 7.960377941437008,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.6386027543511923,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "AMZN",
+      "raw_p_value": 0.06068470153370495,
+      "loss_difference_ci": {
+        "mean": 9.921849767804297,
+        "lower_95": 1.927386752609474,
+        "upper_95": 23.353869036765257,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1011411692228416,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "GOOG",
+      "raw_p_value": 0.5084601815540768,
+      "loss_difference_ci": {
+        "mean": 3.344731654878095,
+        "lower_95": -3.874495056873372,
+        "upper_95": 17.81882867561324,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.6028147025142333,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "GOOG",
+      "raw_p_value": 0.036486736518847714,
+      "loss_difference_ci": {
+        "mean": 17.71044183906698,
+        "lower_95": 4.317864153311222,
+        "upper_95": 42.08587808613639,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "JPM",
+      "raw_p_value": 0.5123924971370983,
+      "loss_difference_ci": {
+        "mean": 1.3734431951224704,
+        "lower_95": -1.269891357361973,
+        "upper_95": 6.402758622783954,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.6028147025142333,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "JPM",
+      "raw_p_value": 0.025435464282207894,
+      "loss_difference_ci": {
+        "mean": 11.666766065944303,
+        "lower_95": 3.593324218757112,
+        "upper_95": 23.883059943741117,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "META",
+      "raw_p_value": 0.06034509958470221,
+      "loss_difference_ci": {
+        "mean": 66.2720976888764,
+        "lower_95": -10.998616967636925,
+        "upper_95": 80.56573490578036,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1011411692228416,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "META",
+      "raw_p_value": 0.09331230785181065,
+      "loss_difference_ci": {
+        "mean": 47.82367795822851,
+        "lower_95": -12.811070694146325,
+        "upper_95": 66.19205318661919,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.14355739669509332,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "MSFT",
+      "raw_p_value": 0.04534817456020221,
+      "loss_difference_ci": {
+        "mean": 24.650690036166065,
+        "lower_95": 6.078086766106328,
+        "upper_95": 52.882044761266236,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "MSFT",
+      "raw_p_value": 0.04534817456020221,
+      "loss_difference_ci": {
+        "mean": 24.650690036166065,
+        "lower_95": 6.078086766106328,
+        "upper_95": 52.882044761266236,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "NVDA",
+      "raw_p_value": 0.6386027543511923,
+      "loss_difference_ci": {
+        "mean": 4.686447003951324,
+        "lower_95": -16.468883196342308,
+        "upper_95": 21.80331082802961,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.6386027543511923,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "NVDA",
+      "raw_p_value": 0.6386027543511923,
+      "loss_difference_ci": {
+        "mean": 4.686447003951324,
+        "lower_95": -16.468883196342308,
+        "upper_95": 21.80331082802961,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.6386027543511923,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "QQQ",
+      "raw_p_value": 0.019821023598478902,
+      "loss_difference_ci": {
+        "mean": 37.02347408520798,
+        "lower_95": 6.306560720302494,
+        "upper_95": 65.97628509029315,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "QQQ",
+      "raw_p_value": 0.019821023598478902,
+      "loss_difference_ci": {
+        "mean": 37.02347408520798,
+        "lower_95": 6.306560720302494,
+        "upper_95": 65.97628509029315,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "SPY",
+      "raw_p_value": 0.03178715530770717,
+      "loss_difference_ci": {
+        "mean": 15.780954894837242,
+        "lower_95": 1.9977815852946352,
+        "upper_95": 30.91634741168903,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "SPY",
+      "raw_p_value": 0.03178715530770717,
+      "loss_difference_ci": {
+        "mean": 15.780954894837242,
+        "lower_95": 1.9977815852946352,
+        "upper_95": 30.91634741168903,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09069634912040442,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric_holdout",
+      "symbol": "TSLA",
+      "raw_p_value": 0.18476486035497153,
+      "loss_difference_ci": {
+        "mean": 48.90157527130541,
+        "lower_95": -26.377122635482465,
+        "upper_95": 127.63933897499359,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.24635314713996204,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence_holdout",
+      "symbol": "TSLA",
+      "raw_p_value": 0.18476486035497153,
+      "loss_difference_ci": {
+        "mean": 48.90157527130541,
+        "lower_95": -26.377122635482465,
+        "upper_95": 127.63933897499359,
+        "n": 20,
+        "block_length": 5
+      },
+      "bh_q_value": 0.24635314713996204,
+      "fdr_significant_05": false
+    }
+  ]
+}

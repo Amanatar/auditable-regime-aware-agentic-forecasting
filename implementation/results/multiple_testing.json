@@ -1,0 +1,217 @@
+{
+  "source": "implementation\\results\\real_price_results.json",
+  "family": "all method/model by symbol DM comparisons supplied in the input",
+  "method": "Benjamini-Hochberg FDR at q=0.05; moving-block bootstrap 95% CI for mean squared-loss difference",
+  "tests": [
+    {
+      "model": "trace_fin_numeric",
+      "symbol": "AAPL",
+      "raw_p_value": 0.01864308535586551,
+      "loss_difference_ci": {
+        "mean": 15.027957161489823,
+        "lower_95": 1.68102137402566,
+        "upper_95": 27.90723268342061,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09321542677932755,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "AAPL",
+      "raw_p_value": 0.025544866601923556,
+      "loss_difference_ci": {
+        "mean": 16.798382080855397,
+        "lower_95": 1.5526050067132924,
+        "upper_95": 33.86117571086083,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09579324975721333,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
+      "symbol": "AMZN",
+      "raw_p_value": 0.10038027733426866,
+      "loss_difference_ci": {
+        "mean": 6.3478007305107536,
+        "lower_95": -0.8887637305984389,
+        "upper_95": 14.968700197361606,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "AMZN",
+      "raw_p_value": 0.04294315778246969,
+      "loss_difference_ci": {
+        "mean": 10.584262402332824,
+        "lower_95": -0.13735749302883365,
+        "upper_95": 25.448327410533874,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.12882947334740907,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
+      "symbol": "GOOG",
+      "raw_p_value": 0.24113832435239715,
+      "loss_difference_ci": {
+        "mean": 14.158356840334378,
+        "lower_95": -3.4386710450011204,
+        "upper_95": 40.461636308793274,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.2967973212974953,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "GOOG",
+      "raw_p_value": 0.11792708933077913,
+      "loss_difference_ci": {
+        "mean": 19.249605269209617,
+        "lower_95": 0.31643456816761023,
+        "upper_95": 44.2387790857313,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
+      "symbol": "JPM",
+      "raw_p_value": 0.924765985972815,
+      "loss_difference_ci": {
+        "mean": -0.1636525896131217,
+        "lower_95": -3.1398819740656405,
+        "upper_95": 2.9984681893356684,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.924765985972815,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "JPM",
+      "raw_p_value": 0.09247532394318835,
+      "loss_difference_ci": {
+        "mean": 4.5056251292484735,
+        "lower_95": -0.13517410035530117,
+        "upper_95": 10.36552844003446,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_numeric",
+      "symbol": "META",
+      "raw_p_value": 0.010123096828672093,
+      "loss_difference_ci": {
+        "mean": 131.4682251599095,
+        "lower_95": 22.276671533168766,
+        "upper_95": 277.5825220659002,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09321542677932755,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_lexical_evidence",
+      "symbol": "META",
+      "raw_p_value": 0.01756132264186314,
+      "loss_difference_ci": {
+        "mean": 134.68415138733118,
+        "lower_95": 15.776124571796448,
+        "upper_95": 303.27256619927516,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.09321542677932755,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
+      "symbol": "AAPL",
+      "raw_p_value": 0.10614667820359754,
+      "loss_difference_ci": {
+        "mean": 7.1417730402836215,
+        "lower_95": 0.8333786210032257,
+        "upper_95": 18.020233026454,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
+      "symbol": "AMZN",
+      "raw_p_value": 0.09489691807509389,
+      "loss_difference_ci": {
+        "mean": 19.701968257069755,
+        "lower_95": 1.6813839408698426,
+        "upper_95": 47.79097668860806,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.1768906339961687,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
+      "symbol": "GOOG",
+      "raw_p_value": 0.42134466247782104,
+      "loss_difference_ci": {
+        "mean": 7.4898317555604335,
+        "lower_95": -5.169055808715518,
+        "upper_95": 22.375276380004006,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.4514407097976654,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
+      "symbol": "JPM",
+      "raw_p_value": 0.25722434512449593,
+      "loss_difference_ci": {
+        "mean": 1.6685035514124744,
+        "lower_95": -0.12675118878138183,
+        "upper_95": 4.91547909656045,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.2967973212974953,
+      "fdr_significant_05": false
+    },
+    {
+      "model": "trace_fin_learned_evidence",
+      "symbol": "META",
+      "raw_p_value": 0.1408300356149787,
+      "loss_difference_ci": {
+        "mean": 64.84254594519395,
+        "lower_95": 12.332762877371032,
+        "upper_95": 165.90350618967292,
+        "n": 60,
+        "block_length": 5
+      },
+      "bh_q_value": 0.19204095765678914,
+      "fdr_significant_05": false
+    }
+  ]
+}

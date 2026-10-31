@@ -1,0 +1,32 @@
+{
+  "source": "data\\raw\\sec_filings.jsonl",
+  "rows": 348,
+  "symbols": {
+    "AAPL": {
+      "rows": 148,
+      "cutoff_checks": 11,
+      "all_checks_pass": true
+    },
+    "AMZN": {
+      "rows": 85,
+      "cutoff_checks": 11,
+      "all_checks_pass": true
+    },
+    "GOOG": {
+      "rows": 54,
+      "cutoff_checks": 11,
+      "all_checks_pass": true
+    },
+    "JPM": {
+      "rows": 30,
+      "cutoff_checks": 10,
+      "all_checks_pass": true
+    },
+    "META": {
+      "rows": 31,
+      "cutoff_checks": 11,
+      "all_checks_pass": true
+    }
+  },
+  "status": "pass"
+}
