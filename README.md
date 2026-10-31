@@ -1,5 +1,14 @@
 # TRACE-Fin
 
+<div align="center">
+
+[![CI Verified](https://github.com/Amanatar/auditable-regime-aware-agentic-forecasting/actions/workflows/ci-verify.yml/badge.svg)](https://github.com/Amanatar/auditable-regime-aware-agentic-forecasting/actions)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+</div>
+
 Timestamp-Restricted, Regime-Aware, Evidence-Audited Forecasting for Financial Returns.
 
 This repository contains the research survey, gap analysis, paper proposal, and a runnable implementation scaffold. The method is deliberately conservative: timestamp validity, uncertainty calibration, and transaction-cost-adjusted utility are first-class outcomes. The current evidence is a reproducible research milestone, not a claim of publishable alpha.
