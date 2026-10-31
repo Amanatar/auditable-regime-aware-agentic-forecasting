@@ -31,5 +31,7 @@ jobs:
           python implementation/data/cutoff_validator.py
 
       - name: Run Full VM Execution Test Suite
+        env:
+          PYTHONPATH: .
         run: |
-          pytest -v -s
+          python -m pytest -v -s
