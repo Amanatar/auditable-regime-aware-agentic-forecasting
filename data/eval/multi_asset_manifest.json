@@ -1,0 +1,83 @@
+{
+  "dataset_name": "TRACE-Fin Real Multi-Regime Market Corpus (Frozen Snapshot)",
+  "retrieved_utc": "2026-11-04T14:40:33.882781+00:00",
+  "start": "2021-01-01",
+  "end": "2026-01-01",
+  "total_rows": 6218,
+  "file_path": "data/eval/multi_asset_daily_2021_2026.csv",
+  "file_sha256": "8923f3de1ddfb1093df3213b86932ab5f7bfb53483d19301dee692b87ebb7642",
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "^NSEI",
+    "RELIANCE.NS",
+    "HDFCBANK.NS"
+  ],
+  "symbol_stats": {
+    "SPY": {
+      "metadata": {
+        "name": "SPDR S&P 500 ETF Trust",
+        "market": "US",
+        "currency": "USD",
+        "asset_class": "ETF"
+      },
+      "row_count": 1255,
+      "start_date": "2021-01-04",
+      "end_date": "2025-12-31",
+      "first_close": 368.790009,
+      "last_close": 681.919983
+    },
+    "QQQ": {
+      "metadata": {
+        "name": "Invesco QQQ Trust",
+        "market": "US",
+        "currency": "USD",
+        "asset_class": "ETF"
+      },
+      "row_count": 1255,
+      "start_date": "2021-01-04",
+      "end_date": "2025-12-31",
+      "first_close": 309.309998,
+      "last_close": 614.309998
+    },
+    "^NSEI": {
+      "metadata": {
+        "name": "NIFTY 50",
+        "market": "IN",
+        "currency": "INR",
+        "asset_class": "Index"
+      },
+      "row_count": 1236,
+      "start_date": "2021-01-01",
+      "end_date": "2025-12-31",
+      "first_close": 14018.5,
+      "last_close": 26129.599609
+    },
+    "RELIANCE.NS": {
+      "metadata": {
+        "name": "Reliance Industries Limited",
+        "market": "IN",
+        "currency": "INR",
+        "asset_class": "Equity"
+      },
+      "row_count": 1236,
+      "start_date": "2021-01-01",
+      "end_date": "2025-12-31",
+      "first_close": 917.230957,
+      "last_close": 1570.400024
+    },
+    "HDFCBANK.NS": {
+      "metadata": {
+        "name": "HDFC Bank Limited",
+        "market": "IN",
+        "currency": "INR",
+        "asset_class": "Equity"
+      },
+      "row_count": 1236,
+      "start_date": "2021-01-01",
+      "end_date": "2025-12-31",
+      "first_close": 712.525024,
+      "last_close": 991.200012
+    }
+  }
+}
