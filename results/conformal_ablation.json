@@ -1,0 +1,508 @@
+{
+  "metadata": {
+    "title": "TRACE-Fin Phase 2 Conformal Prediction & Regime Ablation",
+    "target_coverage_pct": 90.0,
+    "alpha": 0.1,
+    "assets": [
+      "SPY",
+      "QQQ",
+      "^NSEI",
+      "RELIANCE.NS",
+      "HDFCBANK.NS"
+    ],
+    "walk_forward_initial_train": 252,
+    "walk_forward_step_size": 5
+  },
+  "pooled_summary": {
+    "horizon_1d": {
+      "leaked_naive": {
+        "mean_empirical_coverage_pct": 87.08,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 76.14,
+        "mean_interval_width": 0.022154,
+        "mean_winkler_score": 0.046941,
+        "mean_directional_hit_rate_pct": 89.08,
+        "mean_information_coefficient": 0.9067
+      },
+      "static_split_conformal": {
+        "mean_empirical_coverage_pct": 90.2,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 84.69,
+        "mean_interval_width": 0.043005,
+        "mean_winkler_score": 0.064784,
+        "mean_directional_hit_rate_pct": 52.32,
+        "mean_information_coefficient": 0.0391
+      },
+      "trace_fin_regime_aci": {
+        "mean_empirical_coverage_pct": 90.69,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 94.62,
+        "mean_interval_width": 0.053973,
+        "mean_winkler_score": 0.071143,
+        "mean_directional_hit_rate_pct": 52.32,
+        "mean_information_coefficient": 0.0391
+      }
+    },
+    "horizon_5d": {
+      "leaked_naive": {
+        "mean_empirical_coverage_pct": 86.96,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 79.47,
+        "mean_interval_width": 0.076689,
+        "mean_winkler_score": 0.116617,
+        "mean_directional_hit_rate_pct": 60.31,
+        "mean_information_coefficient": 0.2527
+      },
+      "static_split_conformal": {
+        "mean_empirical_coverage_pct": 89.18,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 84.06,
+        "mean_interval_width": 0.089784,
+        "mean_winkler_score": 0.121326,
+        "mean_directional_hit_rate_pct": 55.56,
+        "mean_information_coefficient": 0.056
+      },
+      "trace_fin_regime_aci": {
+        "mean_empirical_coverage_pct": 90.18,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 96.65,
+        "mean_interval_width": 0.10004,
+        "mean_winkler_score": 0.125226,
+        "mean_directional_hit_rate_pct": 55.56,
+        "mean_information_coefficient": 0.056
+      }
+    }
+  },
+  "asset_breakdown": {
+    "SPY": {
+      "symbol": "SPY",
+      "total_walk_forward_steps": 200,
+      "horizon_1d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 84.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 69.74,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 100.0,
+          "transition_regime_coverage_pct": 88.89,
+          "mean_interval_width": 0.018573,
+          "mean_winkler_score": 0.046047,
+          "directional_hit_rate_pct": 88.5,
+          "information_coefficient": 0.8686
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 87.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 78.95,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 94.23,
+          "transition_regime_coverage_pct": 91.67,
+          "mean_interval_width": 0.038673,
+          "mean_winkler_score": 0.059149,
+          "directional_hit_rate_pct": 50.5,
+          "information_coefficient": -0.0106
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 91.0,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 96.05,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 84.62,
+          "transition_regime_coverage_pct": 90.28,
+          "mean_interval_width": 0.049172,
+          "mean_winkler_score": 0.062936,
+          "directional_hit_rate_pct": 50.5,
+          "information_coefficient": -0.0106
+        }
+      },
+      "horizon_5d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 84.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 71.05,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 96.15,
+          "transition_regime_coverage_pct": 90.28,
+          "mean_interval_width": 0.064813,
+          "mean_winkler_score": 0.105218,
+          "directional_hit_rate_pct": 62.0,
+          "information_coefficient": 0.252
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 89.0,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 80.26,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 98.08,
+          "transition_regime_coverage_pct": 91.67,
+          "mean_interval_width": 0.079427,
+          "mean_winkler_score": 0.110438,
+          "directional_hit_rate_pct": 54.5,
+          "information_coefficient": 0.0403
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 89.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 96.05,
+          "stress_steps_count": 76,
+          "low_regime_coverage_pct": 82.69,
+          "transition_regime_coverage_pct": 87.5,
+          "mean_interval_width": 0.090186,
+          "mean_winkler_score": 0.104926,
+          "directional_hit_rate_pct": 54.5,
+          "information_coefficient": 0.0403
+        }
+      }
+    },
+    "QQQ": {
+      "symbol": "QQQ",
+      "total_walk_forward_steps": 200,
+      "horizon_1d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 81.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 62.79,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 98.25,
+          "transition_regime_coverage_pct": 92.98,
+          "mean_interval_width": 0.024609,
+          "mean_winkler_score": 0.061912,
+          "directional_hit_rate_pct": 86.5,
+          "information_coefficient": 0.8603
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 88.0,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 79.07,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 94.74,
+          "transition_regime_coverage_pct": 94.74,
+          "mean_interval_width": 0.051902,
+          "mean_winkler_score": 0.078073,
+          "directional_hit_rate_pct": 55.5,
+          "information_coefficient": 0.0543
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 91.0,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 93.02,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 84.21,
+          "transition_regime_coverage_pct": 94.74,
+          "mean_interval_width": 0.065816,
+          "mean_winkler_score": 0.081577,
+          "directional_hit_rate_pct": 55.5,
+          "information_coefficient": 0.0543
+        }
+      },
+      "horizon_5d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 85.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 69.77,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 98.25,
+          "transition_regime_coverage_pct": 96.49,
+          "mean_interval_width": 0.085474,
+          "mean_winkler_score": 0.137315,
+          "directional_hit_rate_pct": 61.0,
+          "information_coefficient": 0.2364
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 88.0,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 76.74,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 98.25,
+          "transition_regime_coverage_pct": 94.74,
+          "mean_interval_width": 0.099553,
+          "mean_winkler_score": 0.136224,
+          "directional_hit_rate_pct": 57.5,
+          "information_coefficient": 0.0544
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 200,
+          "empirical_coverage_pct": 91.5,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 94.19,
+          "stress_steps_count": 86,
+          "low_regime_coverage_pct": 84.21,
+          "transition_regime_coverage_pct": 94.74,
+          "mean_interval_width": 0.11371,
+          "mean_winkler_score": 0.130129,
+          "directional_hit_rate_pct": 57.5,
+          "information_coefficient": 0.0544
+        }
+      }
+    },
+    "^NSEI": {
+      "symbol": "^NSEI",
+      "total_walk_forward_steps": 196,
+      "horizon_1d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 91.33,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 81.82,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 100.0,
+          "transition_regime_coverage_pct": 93.33,
+          "mean_interval_width": 0.016134,
+          "mean_winkler_score": 0.029675,
+          "directional_hit_rate_pct": 88.27,
+          "information_coefficient": 0.9109
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 92.35,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 86.36,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 94.55,
+          "transition_regime_coverage_pct": 96.0,
+          "mean_interval_width": 0.029028,
+          "mean_winkler_score": 0.043948,
+          "directional_hit_rate_pct": 53.06,
+          "information_coefficient": 0.079
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 90.82,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 95.45,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 85.45,
+          "transition_regime_coverage_pct": 90.67,
+          "mean_interval_width": 0.032301,
+          "mean_winkler_score": 0.046266,
+          "directional_hit_rate_pct": 53.06,
+          "information_coefficient": 0.079
+        }
+      },
+      "horizon_5d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 87.24,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 80.3,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 96.36,
+          "transition_regime_coverage_pct": 86.67,
+          "mean_interval_width": 0.054386,
+          "mean_winkler_score": 0.080136,
+          "directional_hit_rate_pct": 60.2,
+          "information_coefficient": 0.2393
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 88.27,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 84.85,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 92.73,
+          "transition_regime_coverage_pct": 88.0,
+          "mean_interval_width": 0.063786,
+          "mean_winkler_score": 0.083375,
+          "directional_hit_rate_pct": 58.16,
+          "information_coefficient": 0.0301
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 88.27,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 98.48,
+          "stress_steps_count": 66,
+          "low_regime_coverage_pct": 78.18,
+          "transition_regime_coverage_pct": 86.67,
+          "mean_interval_width": 0.074495,
+          "mean_winkler_score": 0.095534,
+          "directional_hit_rate_pct": 58.16,
+          "information_coefficient": 0.0301
+        }
+      }
+    },
+    "RELIANCE.NS": {
+      "symbol": "RELIANCE.NS",
+      "total_walk_forward_steps": 196,
+      "horizon_1d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 89.8,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 85.22,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 95.83,
+          "transition_regime_coverage_pct": 96.49,
+          "mean_interval_width": 0.026257,
+          "mean_winkler_score": 0.046949,
+          "directional_hit_rate_pct": 92.86,
+          "information_coefficient": 0.9454
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 91.84,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 91.3,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 87.5,
+          "transition_regime_coverage_pct": 94.74,
+          "mean_interval_width": 0.04749,
+          "mean_winkler_score": 0.06755,
+          "directional_hit_rate_pct": 54.08,
+          "information_coefficient": 0.0945
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 89.8,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 93.04,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 75.0,
+          "transition_regime_coverage_pct": 89.47,
+          "mean_interval_width": 0.054697,
+          "mean_winkler_score": 0.074122,
+          "directional_hit_rate_pct": 54.08,
+          "information_coefficient": 0.0945
+        }
+      },
+      "horizon_5d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 88.27,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 89.57,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 100.0,
+          "transition_regime_coverage_pct": 80.7,
+          "mean_interval_width": 0.092392,
+          "mean_winkler_score": 0.134018,
+          "directional_hit_rate_pct": 60.2,
+          "information_coefficient": 0.2373
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 88.78,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 89.57,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 100.0,
+          "transition_regime_coverage_pct": 82.46,
+          "mean_interval_width": 0.103605,
+          "mean_winkler_score": 0.138614,
+          "directional_hit_rate_pct": 53.57,
+          "information_coefficient": 0.0926
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 90.82,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 95.65,
+          "stress_steps_count": 115,
+          "low_regime_coverage_pct": 95.83,
+          "transition_regime_coverage_pct": 78.95,
+          "mean_interval_width": 0.105662,
+          "mean_winkler_score": 0.147322,
+          "directional_hit_rate_pct": 53.57,
+          "information_coefficient": 0.0926
+        }
+      }
+    },
+    "HDFCBANK.NS": {
+      "symbol": "HDFCBANK.NS",
+      "total_walk_forward_steps": 196,
+      "horizon_1d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 88.27,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 81.11,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 94.59,
+          "transition_regime_coverage_pct": 94.2,
+          "mean_interval_width": 0.025196,
+          "mean_winkler_score": 0.050123,
+          "directional_hit_rate_pct": 89.29,
+          "information_coefficient": 0.9485
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 91.33,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 87.78,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 91.89,
+          "transition_regime_coverage_pct": 95.65,
+          "mean_interval_width": 0.047933,
+          "mean_winkler_score": 0.075202,
+          "directional_hit_rate_pct": 48.47,
+          "information_coefficient": -0.0217
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 90.82,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 95.56,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 75.68,
+          "transition_regime_coverage_pct": 92.75,
+          "mean_interval_width": 0.067881,
+          "mean_winkler_score": 0.090812,
+          "directional_hit_rate_pct": 48.47,
+          "information_coefficient": -0.0217
+        }
+      },
+      "horizon_5d": {
+        "leaked_naive": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 89.29,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 86.67,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 91.89,
+          "transition_regime_coverage_pct": 91.3,
+          "mean_interval_width": 0.08638,
+          "mean_winkler_score": 0.126397,
+          "directional_hit_rate_pct": 58.16,
+          "information_coefficient": 0.2986
+        },
+        "static_split_conformal": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 91.84,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 88.89,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 91.89,
+          "transition_regime_coverage_pct": 95.65,
+          "mean_interval_width": 0.10255,
+          "mean_winkler_score": 0.137981,
+          "directional_hit_rate_pct": 54.08,
+          "information_coefficient": 0.0628
+        },
+        "trace_fin_regime_aci": {
+          "out_of_sample_steps": 196,
+          "empirical_coverage_pct": 90.82,
+          "target_coverage_pct": 90.0,
+          "stress_regime_coverage_pct": 98.89,
+          "stress_steps_count": 90,
+          "low_regime_coverage_pct": 75.68,
+          "transition_regime_coverage_pct": 88.41,
+          "mean_interval_width": 0.116147,
+          "mean_winkler_score": 0.148217,
+          "directional_hit_rate_pct": 54.08,
+          "information_coefficient": 0.0628
+        }
+      }
+    }
+  }
+}
