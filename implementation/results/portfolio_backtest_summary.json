@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "title": "TRACE-Fin Phase 3: Net-of-Cost Portfolio Backtest & Failure Postmortem",
+    "assets": [
+      "SPY",
+      "QQQ",
+      "^NSEI",
+      "RELIANCE.NS",
+      "HDFCBANK.NS"
+    ],
+    "cost_bps_per_turnover": 10.0,
+    "oos_date_range": [
+      "2022-01-20",
+      "2025-12-31"
+    ],
+    "oos_trading_days": 942
+  },
+  "portfolio_strategies": {
+    "baseline_a_buy_and_hold": {
+      "annualized_return_gross_pct": 11.76,
+      "annualized_return_net_pct": 11.73,
+      "annualized_volatility_gross_pct": 13.63,
+      "annualized_volatility_net_pct": 13.64,
+      "gross_sharpe_ratio": 0.863,
+      "net_sharpe_ratio": 0.86,
+      "sortino_ratio": 1.444,
+      "max_drawdown_pct": 17.49,
+      "calmar_ratio": 0.671,
+      "annualized_turnover": 0.27,
+      "cost_drag_bps_cumulative": 10.0,
+      "total_cost_drag_pct": 0.1,
+      "final_wealth_net": 1.5138,
+      "total_trading_days": 942,
+      "equity_curve_sample": [
+        1.0,
+        0.9062,
+        0.9285,
+        0.9315,
+        1.0621,
+        1.1358,
+        1.1878,
+        1.2881,
+        1.2371,
+        1.4149,
+        1.5127
+      ]
+    },
+    "baseline_b_uncalibrated_point_forecast": {
+      "annualized_return_gross_pct": 2.77,
+      "annualized_return_net_pct": -2.69,
+      "annualized_volatility_gross_pct": 5.07,
+      "annualized_volatility_net_pct": 5.07,
+      "gross_sharpe_ratio": 0.545,
+      "net_sharpe_ratio": -0.531,
+      "sortino_ratio": -0.853,
+      "max_drawdown_pct": 14.99,
+      "calmar_ratio": -0.18,
+      "annualized_turnover": 54.58,
+      "cost_drag_bps_cumulative": 2040.1,
+      "total_cost_drag_pct": 18.45,
+      "final_wealth_net": 0.903,
+      "total_trading_days": 942,
+      "equity_curve_sample": [
+        1.0,
+        0.9636,
+        0.9696,
+        0.9235,
+        0.9178,
+        0.9105,
+        0.8792,
+        0.8744,
+        0.8671,
+        0.8958,
+        0.9032
+      ]
+    },
+    "flagship_c_trace_fin_regime_conformal": {
+      "annualized_return_gross_pct": 2.26,
+      "annualized_return_net_pct": -0.6,
+      "annualized_volatility_gross_pct": 2.54,
+      "annualized_volatility_net_pct": 2.53,
+      "gross_sharpe_ratio": 0.892,
+      "net_sharpe_ratio": -0.237,
+      "sortino_ratio": -0.361,
+      "max_drawdown_pct": 7.36,
+      "calmar_ratio": -0.082,
+      "annualized_turnover": 28.41,
+      "cost_drag_bps_cumulative": 1062.0,
+      "total_cost_drag_pct": 10.08,
+      "final_wealth_net": 0.9777,
+      "total_trading_days": 942,
+      "equity_curve_sample": [
+        1.0,
+        0.9994,
+        1.0199,
+        0.9908,
+        0.9902,
+        0.9888,
+        0.9748,
+        0.9619,
+        0.9508,
+        0.9647,
+        0.9782
+      ]
+    }
+  },
+  "contamination_audit": {
+    "causal_pipeline": {
+      "in_sample_sharpe": 2.001,
+      "out_of_sample_sharpe": -0.237,
+      "sharpe_decay_pct": 111.8,
+      "filtration_status": "Strict Point-in-Time (F_t) Clean"
+    },
+    "leaked_pipeline": {
+      "in_sample_sharpe": 10.998,
+      "out_of_sample_sharpe": -0.531,
+      "sharpe_decay_pct": 104.8,
+      "filtration_status": "Contaminated (F_{t+1}) Lookahead Leakage"
+    }
+  },
+  "conformal_ablation_summary": {
+    "horizon_1d": {
+      "leaked_naive": {
+        "mean_empirical_coverage_pct": 87.08,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 76.14,
+        "mean_interval_width": 0.022154,
+        "mean_winkler_score": 0.046941,
+        "mean_directional_hit_rate_pct": 89.08,
+        "mean_information_coefficient": 0.9067
+      },
+      "static_split_conformal": {
+        "mean_empirical_coverage_pct": 90.2,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 84.69,
+        "mean_interval_width": 0.043005,
+        "mean_winkler_score": 0.064784,
+        "mean_directional_hit_rate_pct": 52.32,
+        "mean_information_coefficient": 0.0391
+      },
+      "trace_fin_regime_aci": {
+        "mean_empirical_coverage_pct": 90.69,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 94.62,
+        "mean_interval_width": 0.053973,
+        "mean_winkler_score": 0.071143,
+        "mean_directional_hit_rate_pct": 52.32,
+        "mean_information_coefficient": 0.0391
+      }
+    },
+    "horizon_5d": {
+      "leaked_naive": {
+        "mean_empirical_coverage_pct": 86.96,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 79.47,
+        "mean_interval_width": 0.076689,
+        "mean_winkler_score": 0.116617,
+        "mean_directional_hit_rate_pct": 60.31,
+        "mean_information_coefficient": 0.2527
+      },
+      "static_split_conformal": {
+        "mean_empirical_coverage_pct": 89.18,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 84.06,
+        "mean_interval_width": 0.089784,
+        "mean_winkler_score": 0.121326,
+        "mean_directional_hit_rate_pct": 55.56,
+        "mean_information_coefficient": 0.056
+      },
+      "trace_fin_regime_aci": {
+        "mean_empirical_coverage_pct": 90.18,
+        "target_coverage_pct": 90.0,
+        "mean_stress_regime_coverage_pct": 96.65,
+        "mean_interval_width": 0.10004,
+        "mean_winkler_score": 0.125226,
+        "mean_directional_hit_rate_pct": 55.56,
+        "mean_information_coefficient": 0.056
+      }
+    }
+  }
+}
