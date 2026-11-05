@@ -4,3 +4,5 @@ __pycache__/
 data/raw/
 data/raw_expanded/
 data/processed/
+.env
+*.env
