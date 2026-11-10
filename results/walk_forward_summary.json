@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "universe": [
+      "SPY",
+      "QQQ",
+      "^NSEI",
+      "TLT",
+      "GLD"
+    ],
+    "cache_file": "data/market_cache/daily_2018_2026.parquet",
+    "burn_in_start": "2018-01-02",
+    "oos_start": "2020-01-01",
+    "oos_end": "2026-10-30",
+    "oos_trading_days": 1772,
+    "transaction_cost_bps_one_way": 10.0,
+    "runtime_seconds": 4.591
+  },
+  "causality_audit": {
+    "cutoff_steps_verified": 1772,
+    "causal_lookahead_violations": 0,
+    "diagnostic_leak_steps_flagged": 1772,
+    "diagnostic_leak_detection_rate_pct": 100.0,
+    "sha256_filtration_seal": "99d4ba19f95516acb40ba5b01901b337ded15632945cfdb098c8df2dcc538064"
+  },
+  "tracks": {
+    "equal_weight_buy_hold": {
+      "gross_ann_return_pct": 11.08,
+      "net_ann_return_pct": 11.03,
+      "ann_volatility_pct": 11.56,
+      "gross_sharpe": 0.967,
+      "net_sharpe": 0.963,
+      "sortino_ratio": 1.36,
+      "max_drawdown_pct": 21.34,
+      "calmar_ratio": 0.517,
+      "annualized_turnover": 0.47,
+      "cost_drag_ann_pct": 0.05,
+      "final_wealth_net": 2.0867,
+      "oos_days": 1772,
+      "label": "Equal-Weight Buy & Hold"
+    },
+    "uncalibrated_point_forecast": {
+      "gross_ann_return_pct": -1.18,
+      "net_ann_return_pct": -12.52,
+      "ann_volatility_pct": 11.8,
+      "gross_sharpe": -0.042,
+      "net_sharpe": -1.075,
+      "sortino_ratio": -1.427,
+      "max_drawdown_pct": 68.24,
+      "calmar_ratio": -0.184,
+      "annualized_turnover": 121.86,
+      "cost_drag_ann_pct": 12.19,
+      "final_wealth_net": 0.3903,
+      "oos_days": 1772,
+      "label": "Uncalibrated Point Forecast"
+    },
+    "trace_fin_causal": {
+      "gross_ann_return_pct": 11.2,
+      "net_ann_return_pct": 10.74,
+      "ann_volatility_pct": 8.92,
+      "gross_sharpe": 1.236,
+      "net_sharpe": 1.189,
+      "sortino_ratio": 1.68,
+      "max_drawdown_pct": 11.76,
+      "calmar_ratio": 0.913,
+      "annualized_turnover": 4.19,
+      "cost_drag_ann_pct": 0.42,
+      "final_wealth_net": 2.0489,
+      "oos_days": 1772,
+      "label": "TRACE-Fin Causal Regime + Conformal + Cost Gate"
+    },
+    "diagnostic_lookahead_leak": {
+      "gross_ann_return_pct": 1556.55,
+      "net_ann_return_pct": 1056.63,
+      "ann_volatility_pct": 16.08,
+      "gross_sharpe": 17.572,
+      "net_sharpe": 15.379,
+      "sortino_ratio": 495.977,
+      "max_drawdown_pct": 0.19,
+      "calmar_ratio": 5623.536,
+      "annualized_turnover": 363.07,
+      "cost_drag_ann_pct": 36.31,
+      "final_wealth_net": 29930616.6525,
+      "oos_days": 1772,
+      "label": "Diagnostic 1-Day Lookahead Leak Control"
+    }
+  },
+  "conformal_coverage": {
+    "static_split_conformal": {
+      "calm": {
+        "count": 5014,
+        "coverage_pct": 94.1,
+        "mean_width_pct": 3.635,
+        "winkler_score": 0.04221
+      },
+      "high_volatility": {
+        "count": 3846,
+        "coverage_pct": 84.14,
+        "mean_width_pct": 3.688,
+        "winkler_score": 0.07264
+      },
+      "overall": {
+        "count": 8860,
+        "coverage_pct": 89.77,
+        "mean_width_pct": 3.658,
+        "winkler_score": 0.05542
+      }
+    },
+    "trace_fin_regime_aci": {
+      "calm": {
+        "count": 5014,
+        "coverage_pct": 86.9,
+        "mean_width_pct": 2.772,
+        "winkler_score": 0.04131
+      },
+      "high_volatility": {
+        "count": 3846,
+        "coverage_pct": 93.6,
+        "mean_width_pct": 6.025,
+        "winkler_score": 0.06942
+      },
+      "overall": {
+        "count": 8860,
+        "coverage_pct": 89.81,
+        "mean_width_pct": 4.184,
+        "winkler_score": 0.05351
+      }
+    }
+  }
+}

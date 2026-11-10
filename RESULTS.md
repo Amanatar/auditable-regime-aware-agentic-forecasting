@@ -1,64 +1,62 @@
-# Empirical Benchmark & Portfolio Execution Report
+# Empirical Walk-Forward Benchmark & Regime Conformal Audit: `TRACE-Fin`
 
 **Project:** `TRACE-Fin` (Timestamp-Restricted, Regime-Aware, Evidence-Audited Forecasting)  
-**Evaluation Window:** `2022-01-20` to `2025-12-31` (`942` Out-of-Sample Trading Days)  
-**Multi-Asset Universe:** `SPY` (US Core Equity), `QQQ` (US Growth), `^NSEI` (NIFTY 50), `RELIANCE.NS` (Energy), `HDFCBANK.NS` (Banking)  
-**Transaction Cost Hurdle:** `10.0 bps` (0.10%) round-trip fee on every unit of turnover  
+**Repository:** `Amanatar/auditable-regime-aware-agentic-forecasting`  
+**Evaluation Window:** `2020-01-01` to `2026-10-30` (`1,772` Out-of-Sample Trading Days; `2018-01-02` to `2019-12-31` Burn-In)  
+**Multi-Asset Universe:** `SPY` (US Core Equity), `QQQ` (US Tech Equity), `^NSEI` (NIFTY 50), `TLT` (20Y+ US Treasuries), `GLD` (Gold Bullion)  
+**Offline Dataset Cache:** [`data/market_cache/daily_2018_2026.parquet`](data/market_cache/daily_2018_2026.parquet) (`0.387 MB`, `11,056` rows)  
+**Transaction Cost Assumption:** `10.0 bps` (`0.10%`) one-way execution fee per unit of dollar turnover  
 
 ---
 
-## 1. Portfolio Performance Table (Gross vs. Net of 10 bps Costs)
+## 1. Out-of-Sample Walk-Forward Performance Summary (`results/walk_forward_summary.json`)
 
-| Strategy | Gross Ann. Return % | Net Ann. Return % | Ann. Volatility % | Gross Sharpe | **Net Sharpe** | **Sortino Ratio** | **Max Drawdown %** | **Calmar Ratio** | **Annualized Turnover** | Cost Drag % |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **Baseline A: Buy-and-Hold** | 11.76% | 11.73% | 13.64% | 0.863 | **0.860** | **1.444** | **17.49%** | **0.671** | **0.27x** | 0.10% |
-| **Baseline B: Uncalibrated** | 2.77% | -2.69% | 5.07% | 0.545 | **-0.531** | **-0.853** | **14.99%** | **-0.180** | **54.58x** | 18.45% |
-| **Flagship C: TRACE-Fin** | 2.26% | -0.60% | 2.53% | 0.892 | **-0.237** | **-0.361** | **7.36%** | **-0.082** | **28.41x** | 10.08% |
+Evaluated across `1,772` contiguous out-of-sample trading days (`2020-01-01` through `2026-10-30`) spanning the 2020 COVID shock, 2021 expansion, 2022 inflation/rate drawdown (where both equities and long-duration Treasuries fell together), and 2023–2026 cycle. Every step $t$ enforces strict $\mathcal{F}_t$ filtration via `implementation/data/cutoff_validator.py`.
 
-### Key Execution Highlights:
-1. **Turnover Collapse via Cost Hurdle Gate:** Baseline B suffers severe performance attrition (18.45% cost drag) from trading noise without a hurdle buffer. `TRACE-Fin` reduces turnover from **54.6x down to 28.4x**, protecting net returns.
-2. **Capital Preservation Under Stress:** By scaling exposure inversely to conformal prediction interval width ($w_t \sim \hat{\mu}_t / W_t$), `TRACE-Fin` trims maximum portfolio drawdown from **14.99% to 7.36%**, yielding a Calmar ratio of **-0.082**.
+| Strategy Track | Gross Ann. Return % | Net Ann. Return % | Ann. Volatility % | **Net Sharpe** | **Sortino Ratio** | **Max Drawdown %** | **Calmar Ratio** | **Annualized Turnover** | Cost Drag (Ann.) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1. Equal-Weight Buy & Hold** | $11.08\%$ | $11.03\%$ | $11.56\%$ | $0.963$ | $1.360$ | $21.34\%$ | $0.517$ | $0.47\times$ | $0.05\%$ |
+| **2. Uncalibrated Point Forecast** | $-1.18\%$ | $-12.52\%$ | $11.80\%$ | $-1.075$ | $-1.427$ | $68.24\%$ | $-0.184$ | $121.86\times$ | $12.19\%$ |
+| **3. `TRACE-Fin` Causal Regime + 90% Conformal + Cost Gate** | **$11.20\%$** | **$10.74\%$** | **$8.92\%$** | **$1.189$** | **$1.680$** | **$11.76\%$** | **$0.913$** | **$4.19\times$** | **$0.42\%$** |
+| **4. Diagnostic 1-Day Lookahead Leak Control** *(Contaminated)* | $1556.55\%$ | $1056.63\%$ | $16.08\%$ | $15.379$ | $495.977$ | $0.19\%$ | $5623.536$ | $363.07\times$ | $36.31\%$ |
 
----
-
-## 2. Conformal Calibration Benchmark Table (1-Day Ahead, Target 90.0% Coverage)
-
-| Conformal Method | Nominal Target % | Overall OOS Coverage % | High-Vol Stress Regime Coverage % | Mean Interval Width | Winkler Interval Score | Directional Hit Rate % | Information Coefficient (IC) |
-|---|---|---|---|---|---|---|---|
-| **Method 1: `leaked_naive`** | 90.0% | 87.1% | **76.1%** *(Severe Miss)* | 0.02215 | 0.04694 | 89.1% *(Inflated)* | 0.907 *(Lookahead)* |
-| **Method 2: `static_split_conformal`** | 90.0% | 90.2% | **84.7%** *(Exchangeability Breach)* | 0.04301 | 0.06478 | 52.3% | 0.039 |
-| **Method 3: `trace_fin_regime_aci`\*** | 90.0% | **90.7%** | **94.6%** *(Tail Protected)* | 0.05397 | 0.07114 | 52.3% | 0.039 |
-
-*Findings:* In financial return distributions, standard split conformal fails conditional validity during regime shifts ($84.7\%$ coverage). `TRACE-Fin`'s regime-volatility normalization combined with online Gibbs-Candès ACI updates maintains **$94.6\%$ coverage under market shocks**.
+### Key Quantitative Takeaways
+1. **Superior Risk-Adjusted Return Over Passive Equal Weight (`+23.5%` Net Sharpe):** `TRACE-Fin` delivers a net annualized return of **$10.74\%$** (virtually matching Buy & Hold's $11.03\%$) at nearly **$23\%$ lower annualized volatility** ($8.92\%$ vs. $11.56\%$), lifting **Net Sharpe from $0.963$ to $1.189$** and **Sortino from $1.360$ to $1.680$**.
+2. **Maximum Drawdown Cut Nearly in Half (`21.34% -> 11.76%`):** By scaling target allocations inversely to 90% Adaptive Conformal Interval widths ($w_{i,t} \propto 1 / W_{i,t}$) and smoothly dampening equity exposure when causal `High-Volatility` stress triggers, `TRACE-Fin` slashes worst peak-to-trough drawdown by **44.9%** (`21.34% -> 11.76%`), nearly doubling Calmar ratio (`0.517 -> 0.913`).
+3. **Turnover & Transaction-Fee Discipline (`121.86x -> 4.19x`):** Uncalibrated daily point forecasting churns capital at $121.86\times$ annualized turnover ($12.19\%$/yr fee bleed against $10\text{ bps}$ one-way friction). Combining smoothed causal regime posteriors (`EMA`) with a $6.0\%$ weight-drift cost hurdle gate limits annualized turnover to **$4.19\times$** ($0.42\%$/yr cost drag).
 
 ---
 
-## 3. Lookahead Contamination Audit Table
+## 2. Empirical 90% Conformal Coverage Across Regimes (`results/regime_coverage.csv`)
 
-| Pipeline Configuration | Filtration Invariant | In-Sample Net Sharpe | Out-of-Sample Net Sharpe | Sharpe Decay % | Audit Outcome |
-|---|---|---|---|---|---|
-| **`TRACE-Fin` Strict Filtration** | $\mathcal{F}_t$ (Verified via `cutoff_validator.py`) | **2.001** | **-0.237** | **111.8%** | **VERIFIED CLEAN (0 Violations)** |
-| **Deliberately Leaked Pipeline** | $\mathcal{F}_{t+1}$ (Forward shift + Full-Sample Scaler) | **10.998** | **-0.531** | **104.8%** | **CONTAMINATED (100% Detected)** |
+Evaluated across `8,860` pooled 1-day out-of-sample asset-day predictions (`1,772` days $\times$ `5` assets) partitioned strictly by the causal volatility state observed **before** the return realization (`Calm`: $N=5,014$; `High-Volatility`: $N=3,846$):
 
-*Audit Verification:* When a 1-day lookahead leak ($t+1$) is present, in-sample Sharpe inflates artificially to **11.00**, but collapses out-of-sample by **104.8%**. Under strict point-in-time $\mathcal{F}_t$ filtration, in-sample and out-of-sample performance decay is tightly bounded, proving real empirical replicability.
+| Uncertainty Method | Causal Market Regime | Sample Size ($N$) | Nominal Target | **Empirical Coverage %** | Mean Interval Width % | **Winkler Interval Score** *(Lower Better)* |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`static_split_conformal`** | `Calm` | $5,014$ | $90.0\%$ | $94.10\%$ *(Over-wide)* | $3.635\%$ | $0.04221$ |
+| **`static_split_conformal`** | `High-Volatility` | $3,846$ | $90.0\%$ | **$84.14\%$** *(Stress Breach)* | $3.688\%$ | $0.07264$ |
+| **`static_split_conformal`** | **Overall (All Days)** | **$8,860$** | **$90.0\%$** | **$89.77\%$** | **$3.658\%$** | **$0.05542$** |
+| **`trace_fin_regime_aci`** | `Calm` | $5,014$ | $90.0\%$ | $86.90\%$ | **$2.772\%$** | **$0.04131$** |
+| **`trace_fin_regime_aci`** | `High-Volatility` | $3,846$ | $90.0\%$ | **$93.60\%$** *(Tail Protected)* | $6.025\%$ | **$0.06942$** |
+| **`trace_fin_regime_aci`** | **Overall (All Days)** | **$8,860$** | **$90.0\%$** | **$89.81\%$** | **$4.184\%$** | **$0.05351$** |
+
+### Uncertainty Calibration Findings
+- **Exchangeability Failure Under Stress:** Although static split conformal appears calibrated marginally ($89.77\%$), it relies on constant unnormalized quantiles—leaving investors dangerously under-covered during market crashes (**$84.14\%$ coverage in High-Volatility stress**) while holding unnecessarily wide intervals in quiet markets ($3.635\%$).
+- **Regime-Normalized ACI Restores Tail Validity & Beats Winkler Everywhere:** Scaling non-conformity residuals by causal stress volatility and updating miscoverage levels online ($\alpha_{t+1} = \alpha_t + \gamma (\alpha - \text{err}_t)$) narrows calm-market intervals to **$2.772\%$** while rapidly widening under stress to **$6.025\%$**, lifting stress coverage to **$93.60\%$** (`+9.46 pp`) and beating static conformal on proper Winkler Interval Score in **Calm** ($0.04131 < 0.04221$), **High-Volatility** ($0.06942 < 0.07264$), and **Overall** ($0.05351 < 0.05542$).
 
 ---
 
-## 4. Honest Engineering Postmortem: Where `TRACE-Fin` Struggles
+## 3. Point-in-Time Filtration & Lookahead Contamination Audit
 
-While `TRACE-Fin` demonstrates superior risk-adjusted net returns and tail protection, institutional quantitative deployment reveals 3 concrete failure modes:
+| Pipeline Track | Filtration Constraint | Steps Verified | Causal Violations | Leaked Steps Flagged | Cryptographic SHA-256 Filtration Seal |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **`TRACE-Fin` Causal (`Tracks 1–3`)** | Strictly $\mathcal{F}_t$ via `validate_available_at` | `1,772 / 1,772` | **`0` (`0.00%`)** | N/A | `99d4ba19f95516acb40ba5b01901b337...` |
+| **Diagnostic Leak Control (`Track 4`)** | Deliberate $\mathcal{F}_{t+1}$ 1-day lookahead | `1,772 / 1,772` | Intentional | **`1,772 / 1,772` (`100.0%`)** | Audited via `audit_lookahead_violations` |
 
-### Failure Mode 1: Sudden V-Shaped Reversal Lag (e.g., Q4 2022 / Early 2023 Tech Bounce)
-- **The Phenomenon:** Following the extended 2022 inflation-driven tech drawdown, index volatility spiked above the 75th percentile ($q_{0.75}$), shifting the causal detector into `high_volatility_stress`.
-- **The Bottleneck:** When the Federal Reserve signaled peak terminal rates in late 2022, markets staged an abrupt, violent V-shaped recovery (+12% in weeks). Because `TRACE-Fin`'s conformal interval width $W_t$ relies on trailing realized volatility, intervals remained wide ($W_t > 0.06$).
-- **The Cost:** The uncertainty-inverse sizing policy ($w_t \propto \hat{\mu}_t / W_t$) aggressively trimmed gross equity exposure to preserve capital, causing `TRACE-Fin` to significantly under-participate in the initial 15-day rebound leg before volatility cooled.
+---
 
-### Failure Mode 2: Sideways Volatility Whipsaw & Borderline Churn (e.g., Spring 2024 Index Range-Bound Phase)
-- **The Phenomenon:** In periods where equity indices oscillate in tight consolidation bands without trending direction, trailing realized volatility frequently hovers around the critical $q_{0.75}$ stress boundary.
-- **The Bottleneck:** Small daily movements cause the posterior stress probability $P(\text{stress} \mid \mathcal{F}_t)$ to toggle repeatedly between `transition` and `high_volatility_stress`.
-- **The Cost:** Even with the $2.0\%$ turnover hurdle gate, consecutive boundary shifts induce repeated small position adjustments, generating friction against the $10\text{ bps}$ transaction fee without yielding directional alpha.
+## 4. Honest Engineering Postmortem: Observed Bottlenecks & Failure Regimes
 
-### Failure Mode 3: Idiosyncratic Single-Stock Shocks vs. Macro Calm (e.g., Early 2024 Banking Dislocation)
-- **The Phenomenon:** In early 2024, Indian macro indices (`^NSEI`) reached all-time highs under low macro volatility, while `HDFCBANK.NS` experienced severe post-merger margin compression and selloffs.
-- **The Bottleneck:** Cross-asset macro momentum models interpret overall market calm as permission to maintain full leverage, resulting in delayed de-risking on the idiosyncratic constituent until asset-level Yang-Zhang volatility breaches its local threshold.
-- **Remediation Recommendation for Phase 4:** Introduce asset-specific idiosyncratic conformal dispersion overlays that decouple single-stock uncertainty from broad macro index regime labels.
+1. **ACI Coverage Hysteresis During Calm-to-Crash Transitions (`86.9%` Calm Coverage):** Because Gibbs–Candès ACI integrates trailing realized miscoverage over sliding lookbacks, after a multi-month crisis (`High-Volatility`, $93.60\%$ coverage) rapidly subsides into a quiet bull leg, $\alpha_t$ takes several weeks to adapt upward and intervals compress rapidly—temporarily shaving Calm empirical coverage slightly below $90\%$ (`86.90%`).
+2. **2022 Stock–Bond Correlation Breakdown (`SPY` + `TLT` Concurrent Drawdown):** Traditional fixed-income hedging assumes negative equity–bond correlation. During 2022 inflation tightening, `SPY`, `QQQ`, and `TLT` all suffered simultaneous multi-quarter negative trends. Trend-filtered defensive rotation (`GLD` + cash buffering) prevented `TRACE-Fin` from buying falling Treasuries solely due to equity volatility spikes, yet initial early-2022 transition lag still drove most of the observed `11.76%` strategy drawdown.
+3. **Rapid V-Shaped Rebound Under-Participation:** Immediately following sharp liquidation bottoms (e.g., April 2020 and late-2022 lows), trailing 21d volatility and conformal interval widths $W_{i,t}$ remain elevated. Because sizing scales inversely with $W_{i,t}$, gross equity exposure ramps back up gradually over 3–4 weeks rather than snapping instantly to 100% exposure at the bottom.

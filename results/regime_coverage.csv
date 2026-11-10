@@ -1,0 +1,7 @@
+method,regime,nominal_target_pct,count,coverage_pct,mean_width_pct,winkler_score
+static_split_conformal,Calm,90.0,5014,94.1,3.635,0.04221
+static_split_conformal,High-Volatility,90.0,3846,84.14,3.688,0.07264
+static_split_conformal,Overall (All Days),90.0,8860,89.77,3.658,0.05542
+trace_fin_regime_aci,Calm,90.0,5014,86.9,2.772,0.04131
+trace_fin_regime_aci,High-Volatility,90.0,3846,93.6,6.025,0.06942
+trace_fin_regime_aci,Overall (All Days),90.0,8860,89.81,4.184,0.05351

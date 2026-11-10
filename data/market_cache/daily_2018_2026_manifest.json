@@ -1,0 +1,16 @@
+{
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "^NSEI",
+    "TLT",
+    "GLD"
+  ],
+  "requested_start": "2018-01-01",
+  "requested_end": "2026-10-30",
+  "actual_min_date": "2018-01-02",
+  "actual_max_date": "2026-10-30",
+  "total_rows": 11056,
+  "size_mb": 0.3866,
+  "generated_utc": "2026-11-10T05:59:31.627477+00:00"
+}
